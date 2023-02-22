@@ -37,7 +37,7 @@ const MenuBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" elevation={0}>
       <Container maxWidth="xl">
         <Toolbar disableGutters className='mainToolbar'>
           <AdbIcon sx={{ display: { md: 'flex' }, mr: 1 }} />
@@ -56,7 +56,7 @@ const MenuBar = () => {
               textDecoration: 'none',
             }}
           >
-            Regional Healthcare Analysis and Imporovement Network
+            Regional Healthcare Analysis and Improvement Network
           </Typography>
 
           <Box justifyContent="flex-end" sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
