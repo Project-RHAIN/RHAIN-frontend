@@ -30,13 +30,13 @@ const Searchbar = () => {
             <Heading>Region</Heading>
         </React.Fragment>
       <TextField
-        style={{marginLeft:"15px", marginTop :"15px"}}
+        style={{marginLeft:"15px", marginTop :"15px", width: '90%'}}
         select
-        // fullWidth
+        fullWidth
         label="State"
         value={stateValue}
         onChange={handleStateChange}
-        helperText="Please select a state"
+        // helperText="Please select a state"
       >
         {states.map((state) => (
           <MenuItem key={state.State} value={state.State}>
@@ -45,14 +45,14 @@ const Searchbar = () => {
         ))}
       </TextField>
       <TextField
-        style={{marginLeft:"15px", marginTop :"15px"}}
+        style={{marginLeft:"15px", marginTop :"15px", width: '90%'}}
         select
-        // fullWidth
+        fullWidth
         label="County"
         value={countyValue}
         onChange={handleCountyChange}
         disabled={!stateValue}
-        helperText={stateValue ? "Please select County" : "Please select a state first"}
+        helperText={stateValue ? "" : "Please select a state first"}
       >
         {stateValue &&
           states

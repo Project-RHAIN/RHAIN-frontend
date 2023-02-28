@@ -42,16 +42,17 @@ const Filters = () => {
             </React.Fragment>
             <div>
                 <TextField
-                style={{marginLeft:"15px", marginTop :"15px"}}
+                style={{marginLeft:"15px", marginTop :"15px", width: '90%'}}
                 id="outlined-select-currency-native"
                 select
                 label="Quality"
+                fullWidth
                 defaultValue="A"
                 placeholder="Quality"
                 SelectProps={{
                     native: true,
                 }}
-                helperText="Please select Quality"
+                // helperText="Please select Quality"
                 >
                 {quality.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -62,7 +63,8 @@ const Filters = () => {
             </div>
             <div>
                 <TextField
-                style={{marginLeft:"15px", marginTop :"15px"}}
+                style={{marginLeft:"15px", marginTop :"15px", width: '90%'}}
+                fullWidth
                 id="outlined-select-currency-native"
                 select
                 label="Affordability"
@@ -71,7 +73,7 @@ const Filters = () => {
                 SelectProps={{
                     native: true,
                 }}
-                helperText="Please select Affordability"
+                // helperText="Please select Affordability"
                 >
                 {affordability.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -81,7 +83,7 @@ const Filters = () => {
                 </TextField>
             </div>
             <div>
-                <FormGroup>
+                <FormGroup style={{marginLeft: '15px'}}>
                     <FormControlLabel control={<Checkbox defaultChecked />} label="Include Insurance Data" />
                     <FormControlLabel control={<Checkbox defaultChecked />} label="Show Hospital Data" />
                 </FormGroup>
