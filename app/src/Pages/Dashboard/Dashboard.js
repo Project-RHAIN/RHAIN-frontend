@@ -4,6 +4,7 @@ import { height } from "@mui/system";
 import Visualization from "../../Components/Visualization/Visualization";
 import Insights from "../../Components/Insights/Insights";
 import RegionalData from "../../Components/RegionalData/RegionalData";
+import Map from "../../Components/Map/Map";
 import Score from "../../Components/Score/Score";
 import './Dashboard.scss'
 import SearchBar from "../../Components/SearchBar/SearchBar";
@@ -39,7 +40,9 @@ const Dashboard = () => {
                 </Paper>
             </Grid>
             <Grid item xs={4} className="grid-item">
-                <Paper className="paperContainer"></Paper>
+                <Paper className="paperContainer">
+                    <Map />
+                </Paper>
             </Grid>
           </Grid>
           <Grid container item xs={12} className="bottom-row">
