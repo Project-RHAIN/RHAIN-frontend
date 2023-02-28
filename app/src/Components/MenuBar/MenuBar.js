@@ -12,7 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 
 const pages = ['Data', 'User', 'About'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -40,7 +40,7 @@ const MenuBar = () => {
     <AppBar position="static" elevation={0}>
       <Container maxWidth="xl">
         <Toolbar disableGutters className='mainToolbar'>
-          <AdbIcon sx={{ display: { md: 'flex' }, mr: 1 }} />
+          <HealthAndSafetyIcon sx={{ display: { md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
