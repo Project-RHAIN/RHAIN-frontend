@@ -6,6 +6,8 @@ import Insights from "../../Components/Insights/Insights";
 import RegionalData from "../../Components/RegionalData/RegionalData";
 import Score from "../../Components/Score/Score";
 import './Dashboard.scss'
+import SearchBar from "../../Components/SearchBar/SearchBar";
+import Filters from "../../Components/Filters/Filters";
 
 const Dashboard = () => {
 
@@ -15,7 +17,9 @@ const Dashboard = () => {
             <Grid item xs={2} className="grid-item">
                 <Grid container className="grid-container-sub">
                     <Grid item xs={12} className="grid-item-sub" style={{paddingBottom: '6px'}}>
-                        <Paper className="paperContainer"></Paper>
+                        <Paper className="paperContainer">
+                            <SearchBar/>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} className="grid-item-sub" style={{paddingTop: '6px', paddingBottom: '6px'}}>
                         <Paper className="paperContainer">
@@ -40,7 +44,9 @@ const Dashboard = () => {
           </Grid>
           <Grid container xs={12} className="bottom-row">
             <Grid item xs={2} className="grid-item">
-                <Paper className="paperContainer"></Paper>
+                <Paper className="paperContainer">
+                    <Filters/>
+                </Paper>
             </Grid>
             <Grid item xs={6} className="grid-item">
                 <Paper className="paperContainer">
