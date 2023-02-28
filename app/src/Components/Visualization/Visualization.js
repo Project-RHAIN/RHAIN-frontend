@@ -1,7 +1,7 @@
 import React from "react";
 import Heading from "../Common/Heading/Heading";
 import BasicTabs from "../Common/BasicTabs/BasicTabs";
-import { HospitalAdmissions } from "../Graphs/Graphs";
+import { HospitalAdmissions, Livability } from "../Graphs/Graphs";
 
 const Visualization = () => {
 
@@ -12,17 +12,17 @@ const Visualization = () => {
             // component: <>Hospital Admissions</>
         },
         {
+            label: 'Livability Factors',
+            component: <Livability />
+        },
+        {
             label: 'Affordability',
             component: <>Affordability</>
         },
         {
             label: 'Pollution Levels',
             component: <>Pollution Levels</>
-        },
-        {
-            label: 'Livability Factors',
-            component: <>Livability Factors</>
-        },
+        },        
     ]
 
     return (

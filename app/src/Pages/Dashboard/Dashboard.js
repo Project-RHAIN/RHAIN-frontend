@@ -13,7 +13,7 @@ const Dashboard = () => {
 
     return (
         <Grid container className="grid-container">
-          <Grid container xs={12} className="top-row">
+          <Grid container item xs={12} className="top-row">
             <Grid item xs={2} className="grid-item">
                 <Grid container className="grid-container-sub">
                     <Grid item xs={12} className="grid-item-sub" style={{paddingBottom: '6px'}}>
@@ -42,7 +42,7 @@ const Dashboard = () => {
                 <Paper className="paperContainer"></Paper>
             </Grid>
           </Grid>
-          <Grid container xs={12} className="bottom-row">
+          <Grid container item xs={12} className="bottom-row">
             <Grid item xs={2} className="grid-item">
                 <Paper className="paperContainer">
                     <Filters/>

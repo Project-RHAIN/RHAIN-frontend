@@ -15,12 +15,12 @@ function TabPanel(props) {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       // sx={{display: 'inline-block'}}
-      style={{display: 'inline-block'}}
+      style={{display: 'flex', maxHeight: '85%'}}
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 1 }}>
-          <Typography>{children}</Typography>
+        <Box sx={{marginLeft: 'auto', marginRight: 'auto'}}>
+          {children}
         </Box>
       )}
     </div>
@@ -49,7 +49,7 @@ const BasicTabs = (props) => {
   };
 
   return (
-    <Box sx={{ width: '100%', display: 'inline-block' }}>
+    <Box sx={{ height: '90%', display: 'block' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider', }}>
         <Tabs 
           value={value} 
