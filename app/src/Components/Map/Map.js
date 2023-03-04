@@ -16,7 +16,7 @@ const Map = () => {
             <ZoomableGroup>
             <Geographies geography={geoUrl}>
                 {({ geographies }) =>
-                geographies.map(geo => {
+                geographies.map(geo => {                    
                     // const cur = data.find(s => s.id === geo.id);
                     return (
                     <Geography
