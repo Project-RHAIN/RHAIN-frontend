@@ -19,7 +19,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{marginLeft: 'auto', marginRight: 'auto'}}>
+        <Box sx={{marginLeft: 'auto', marginRight: 'auto'}} id='box-graph'>
           {children}
         </Box>
       )}
