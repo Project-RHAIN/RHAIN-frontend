@@ -14,11 +14,13 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
+      // sx={{display: 'inline-block'}}
+      style={{display: 'flex', maxHeight: '85%'}}
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box sx={{marginLeft: 'auto', marginRight: 'auto'}} id='box-graph'>
+          {children}
         </Box>
       )}
     </div>
@@ -31,23 +33,24 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-function a11yProps(index) {
+const a11yProps = (index) => {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
-export default function BasicTabs() {
+const BasicTabs = (props) => {
   const [value, setValue] = React.useState(0);
+  const {tabData} = props
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+    <Box sx={{ height: '90%', display: 'block' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider', }}>
         <Tabs 
           value={value} 
           onChange={handleChange} 
@@ -55,24 +58,18 @@ export default function BasicTabs() {
           variant="scrollable"
           scrollButtons="auto"
           >
-          <Tab label="Hospitalization Rate" {...a11yProps(0)} wrapped />
-          <Tab label="Affordability" {...a11yProps(1)} wrapped />
-          <Tab label="Pollution Levels" {...a11yProps(2)} wrapped />
-          <Tab label="Livability factors" {...a11yProps(3)} wrapped />
+          { tabData.map((tab, index) => (
+            <Tab key={index} label={tab.label} {...a11yProps(index)} wrapped />  
+          ))}          
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
-        Hospitalization Rate
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Affordability
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Pollution Levels
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Livability factors
-      </TabPanel>
+      { tabData.map((tab, index) => (
+        <TabPanel key={index} value={value} index={index}>
+          {tab.component}
+        </TabPanel>
+      ))}      
     </Box>
   );
 }
+
+export default BasicTabs;
