@@ -42,7 +42,7 @@ const Filters = () => {
             </React.Fragment>
             <div>
                 <TextField
-                style={{marginLeft:"15px", marginTop :"15px"}}
+                style={{marginLeft:"15px", marginTop :"15px", width : '87%'}}
                 id="outlined-select-currency-native"
                 select
                 label="Quality"
@@ -62,7 +62,7 @@ const Filters = () => {
             </div>
             <div>
                 <TextField
-                style={{marginLeft:"15px", marginTop :"15px"}}
+                style={{marginLeft:"15px", marginTop :"15px", width : '87%'}}
                 id="outlined-select-currency-native"
                 select
                 label="Affordability"
@@ -71,7 +71,7 @@ const Filters = () => {
                 SelectProps={{
                     native: true,
                 }}
-                helperText="Please select Affordability"
+                // helperText="Please select Affordability"
                 >
                 {affordability.map((option) => (
                     <option key={option.value} value={option.value}>
