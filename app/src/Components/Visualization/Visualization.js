@@ -1,7 +1,8 @@
 import React from "react";
 import Heading from "../Common/Heading/Heading";
 import BasicTabs from "../Common/BasicTabs/BasicTabs";
-import { HospitalAdmissions, Livability } from "../Graphs/Graphs";
+import HospitalAdmissions from "../Graphs/HospitalAdmissions";
+import Livability from "../Graphs/Livability";
 
 const Visualization = () => {
 
