@@ -1,10 +1,22 @@
-import React from "react"
+import React , {useEffect, useState} from "react"
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 
-const Map = () => {
+
+
+var userSelectedStateValue = null;
+var userSelectedCountyValue = null;
+const Map = (props) => {
+
+    const [, setState] = useState();
 
     const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 
+    useEffect(() => {
+        userSelectedStateValue = props.userSelectedStateValue;
+        userSelectedCountyValue = props.userSelectedCountyValue;
+        console.log(userSelectedStateValue);
+        console.log(userSelectedCountyValue);
+    })
     return (
     <div>
         <ComposableMap 
