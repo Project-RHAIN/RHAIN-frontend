@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Grid, Paper } from "@mui/material";
 import { height } from "@mui/system";
 import Visualization from "../../Components/Visualization/Visualization";
@@ -10,8 +10,22 @@ import './Dashboard.scss'
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import Filters from "../../Components/Filters/Filters";
 
-const Dashboard = () => {
+var userSelectedStateValue = null;
+var userSelectedCountyValue = null;
 
+const Dashboard = (props) => {
+    const [, setState] = useState();
+
+
+    function handleStateChange(val){
+        userSelectedStateValue = val;
+        setState({});
+    }
+
+    function handleCountyChange(val){
+        userSelectedCountyValue = val;
+        setState({});
+    }
     return (
         <Grid container className="grid-container">
           <Grid container item xs={12} className="top-row">
@@ -19,7 +33,7 @@ const Dashboard = () => {
                 <Grid container className="grid-container-sub">
                     <Grid item xs={12} className="grid-item-sub" style={{paddingBottom: '6px'}}>
                         <Paper className="paperContainer">
-                            <SearchBar/>
+                            <SearchBar stateValue={handleStateChange} countyValue={handleCountyChange}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} className="grid-item-sub" style={{paddingTop: '6px', paddingBottom: '6px'}}>
@@ -41,7 +55,7 @@ const Dashboard = () => {
             </Grid>
             <Grid item xs={4} className="grid-item">
                 <Paper className="paperContainer">
-                    <Map />
+                    <Map userSelectedStateValue={userSelectedStateValue} userSelectedCountyValue={userSelectedCountyValue}/>
                 </Paper>
             </Grid>
           </Grid>

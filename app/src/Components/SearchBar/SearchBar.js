@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 import TextField from "@mui/material/TextField";
 import MenuItem from '@mui/material/MenuItem';
 import Heading from "../Common/Heading/Heading";
 
-const Searchbar = () => {
+const Searchbar = (props) => {
   const [stateValue, setstateValue] = useState("");
   const [countyValue, setCountyValue] = useState("");
 
@@ -19,11 +19,15 @@ const Searchbar = () => {
   const handleStateChange = (event) => {
     setstateValue(event.target.value);
     setCountyValue("");
+    props.stateValue(event.target.value);
   };
 
   const handleCountyChange = (event) => {
     setCountyValue(event.target.value);
+    props.countyValue(event.target.value);
+
   };
+
   return (
     <div>
         <React.Fragment>
@@ -37,7 +41,6 @@ const Searchbar = () => {
         label="State"
         value={stateValue}
         onChange={handleStateChange}
-        // helperText="Please select a state"
       >
         {states.map((state) => (
           <MenuItem key={state.State} value={state.State}>

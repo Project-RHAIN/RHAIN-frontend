@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React , {useEffect, useState} from "react"
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import usCounties from 'us-atlas/counties-10m.json';
 import usStates from 'us-atlas/states-10m.json';
@@ -7,7 +7,13 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import './Map.scss'
 
-const Map = () => {
+
+
+var userSelectedStateValue = null;
+var userSelectedCountyValue = null;
+const Map = (props) => {
+
+    const [, setState] = useState();
       
     const curState = 'California';  
          
@@ -35,6 +41,12 @@ const Map = () => {
         console.log("county clicked", county)
     }
 
+    useEffect(() => {
+        userSelectedStateValue = props.userSelectedStateValue;
+        userSelectedCountyValue = props.userSelectedCountyValue;
+        console.log(userSelectedStateValue);
+        console.log(userSelectedCountyValue);
+    })
     return (
     <div className="mainMap">        
         <AddCircleIcon className="button" onClick={handleZoomIn}/>                
