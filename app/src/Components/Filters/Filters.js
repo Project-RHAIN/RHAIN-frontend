@@ -45,6 +45,7 @@ const Filters = () => {
                 style={{marginLeft:"15px", marginTop :"15px", width: '90%'}}
                 id="outlined-select-currency-native"
                 select
+                size="small"
                 label="Quality"
                 fullWidth
                 defaultValue="A"
@@ -66,6 +67,7 @@ const Filters = () => {
                 style={{marginLeft:"15px", marginTop :"15px", width: '90%'}}
                 fullWidth
                 id="outlined-select-currency-native"
+                size="small"
                 select
                 label="Affordability"
                 defaultValue="A"

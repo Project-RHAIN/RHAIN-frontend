@@ -13,9 +13,10 @@ var userSelectedStateValue = null;
 var userSelectedCountyValue = null;
 const Map = (props) => {
 
-    const [, setState] = useState();
+    const {state, setState, county, setCounty} = props.locationObject
+    console.log("INMAP", state, county)
       
-    const curState = 'California';  
+    const curState = state ? state : 'Kansas';
          
     const selectedState = usStates.objects.states.geometries.find(state => state.properties.name === curState);
     const selectedStateCord = stateCords.find(obj => obj.state === curState)
@@ -33,20 +34,16 @@ const Map = (props) => {
     setZoom(zoom - 1);
     };
 
-    const clickState = (state) => {
-        console.log("state clicked", state)
+    const clickState = (st) => {
+        console.log("state clicked", st)
+        setState(st.properties.name)
     }
 
-    const clickCounty = (county) => {
-        console.log("county clicked", county)
+    const clickCounty = (cnty) => {
+        console.log("county clicked", cnty)
+        setCounty(cnty.properties.name)
     }
-
-    useEffect(() => {
-        userSelectedStateValue = props.userSelectedStateValue;
-        userSelectedCountyValue = props.userSelectedCountyValue;
-        console.log(userSelectedStateValue);
-        console.log(userSelectedCountyValue);
-    })
+    
     return (
     <div className="mainMap">        
         <AddCircleIcon className="button" onClick={handleZoomIn}/>                
@@ -58,7 +55,7 @@ const Map = (props) => {
         style={{ width: "100%", height: "100%" }} 
         >
             <ZoomableGroup
-                zoom={zoom} 
+                zoom={state ? zoom : 1}
                 center={mapCenter}
             >
             <Geographies geography={usStates}>
@@ -81,6 +78,7 @@ const Map = (props) => {
                 )})
                 }
             </Geographies>
+            {state ? 
             <Geographies geography={usCounties}>
                 {({ geographies }) =>                
                 geographies.filter(geo => {
@@ -98,7 +96,7 @@ const Map = (props) => {
                         stroke="#000000"
                         style={{
                             default: {
-                                fill: "#a3c7ff",
+                                fill: geo.properties.name === county ? "#F53" : "#a3c7ff",
                                 outline: 'none'
                             },                        
                             hover: {
@@ -114,9 +112,7 @@ const Map = (props) => {
                     );
                 })
                 }
-            </Geographies>
-            {/* <ZoomInButton  />
-            <ZoomOutButton  /> */}
+            </Geographies> : null}
             </ZoomableGroup>
         </ComposableMap>
         </div>

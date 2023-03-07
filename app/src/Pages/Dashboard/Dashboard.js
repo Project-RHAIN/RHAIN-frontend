@@ -14,18 +14,17 @@ var userSelectedStateValue = null;
 var userSelectedCountyValue = null;
 
 const Dashboard = (props) => {
-    const [, setState] = useState();
+    
+    const [state, setState] = useState('');
+    const [county, setCounty] = useState('');
 
-
-    function handleStateChange(val){
-        userSelectedStateValue = val;
-        setState({});
+    const locationObject = {
+        state: state,
+        setState: setState,
+        county: county,
+        setCounty: setCounty
     }
 
-    function handleCountyChange(val){
-        userSelectedCountyValue = val;
-        setState({});
-    }
     return (
         <Grid container className="grid-container">
           <Grid container item xs={12} className="top-row">
@@ -33,7 +32,7 @@ const Dashboard = (props) => {
                 <Grid container className="grid-container-sub">
                     <Grid item xs={12} className="grid-item-sub" style={{paddingBottom: '6px'}}>
                         <Paper className="paperContainer">
-                            <SearchBar stateValue={handleStateChange} countyValue={handleCountyChange}/>
+                            <SearchBar locationObject={locationObject}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} className="grid-item-sub" style={{paddingTop: '6px', paddingBottom: '6px'}}>
@@ -55,7 +54,7 @@ const Dashboard = (props) => {
             </Grid>
             <Grid item xs={4} className="grid-item">
                 <Paper className="paperContainer">
-                    <Map userSelectedStateValue={userSelectedStateValue} userSelectedCountyValue={userSelectedCountyValue}/>
+                    <Map locationObject={locationObject}/>
                 </Paper>
             </Grid>
           </Grid>
