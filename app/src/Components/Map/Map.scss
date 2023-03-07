@@ -1,0 +1,19 @@
+.mainMap {
+
+    height: 100%;
+
+    .button {
+        position: fixed;        
+        margin: 5px;
+        font-size: 25px;
+        color: #1976d2;
+
+        :hover {
+            cursor: pointer;
+        }
+    }
+
+    .bottom-button {        
+        margin: 35px 5px 5px 5px;        
+    }
+}
