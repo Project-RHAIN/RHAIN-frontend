@@ -25,6 +25,37 @@ const Dashboard = (props) => {
         setCounty: setCounty
     }
 
+    const visualizations = [
+        {
+          value: 'healthB',
+          label: 'Health Behaviors',
+        },
+        {
+          value: 'clinCare',
+          label: 'Clinical Care',
+        },
+        {
+          value: 'socioEco',
+          label: 'Socio-economic factors',
+        },
+        {
+          value: 'physEnv',
+          label: 'Physical Environment',
+        },
+        {
+          value: 'lifeQuality',
+          label: 'Quality of Life',
+        }
+      ];
+
+    const [curVis, setCurVis] = useState('healthB')
+
+    const visData = {
+        curVis,
+        setCurVis,
+        visualizations
+    }
+
     return (
         <Grid container className="grid-container">
           <Grid container item xs={12} className="top-row">
@@ -49,7 +80,7 @@ const Dashboard = (props) => {
             </Grid>
             <Grid item xs={6} className="grid-item">                
                 <Paper className="paperContainer">
-                    <Visualization />
+                    <Visualization visData={visData}/>
                 </Paper>
             </Grid>
             <Grid item xs={4} className="grid-item">
@@ -61,7 +92,7 @@ const Dashboard = (props) => {
           <Grid container item xs={12} className="bottom-row">
             <Grid item xs={2} className="grid-item">
                 <Paper className="paperContainer">
-                    <Filters/>
+                    <Filters visData={visData}/>
                 </Paper>
             </Grid>
             <Grid item xs={6} className="grid-item">
