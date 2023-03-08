@@ -3,10 +3,17 @@ import Heading from "../Common/Heading/Heading";
 import BasicTabs from "../Common/BasicTabs/BasicTabs";
 import HospitalAdmissions from "../Graphs/HospitalAdmissions";
 import Livability from "../Graphs/Livability";
+import DoctorRatios from "../Graphs/DoctorRatios";
 
 const Visualization = (props) => {
 
     const {visualizations, curVis, setCurVis} = props.visData
+    const {state, county} = props.locationObject
+
+    const location = {
+        state,
+        county
+    }
 
     const visTabs = {        
         'healthB': [
@@ -31,7 +38,8 @@ const Visualization = (props) => {
         'clinCare': [
             {
                 label: 'Doctor Ratios',
-                component: <>Doctor Ratios - primary care, dentists, mental health providers</>
+                component: <DoctorRatios location={location}/>
+                // component: <>Doctor Ratios - primary care, dentists, mental health providers</>
             },
             {
                 label: 'Uninsured',

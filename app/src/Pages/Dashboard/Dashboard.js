@@ -80,7 +80,7 @@ const Dashboard = (props) => {
             </Grid>
             <Grid item xs={6} className="grid-item">                
                 <Paper className="paperContainer">
-                    <Visualization visData={visData}/>
+                    <Visualization visData={visData} locationObject={locationObject}/>
                 </Paper>
             </Grid>
             <Grid item xs={4} className="grid-item">
