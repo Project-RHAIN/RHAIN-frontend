@@ -28,12 +28,12 @@ const DoctorRatios = (props) => {
     },[county])
     console.log("County is ", county)
     console.log("GRAPH DATA", graphData)
-      return (        
-        <div style={{height: '100%', width: '100%'}} key={JSON.stringify(graphData)}>  {/* IMPORTANT Now gives the updated value but looks a little buggy*/}
-            {graphData.length > 0 ? (
+      return (                
+        graphData.length > 0 ? (
             <BasicBarGraph
                 xlabel=""
                 ylabel="Doctors per person"
+                key={JSON.stringify(graphData)}
             >
                 <VictoryBar
                 // key={JSON.stringify(graphData)}
@@ -41,16 +41,15 @@ const DoctorRatios = (props) => {
                     data: { stroke: "#c43a31" },
                     parent: { border: "1px solid #ccc" },
                 }}
-                labels={({ datum }) => datum.y}
+                labels={({ datum }) => Math.round(datum.y)}
                 animate={{ duration: 1000 }}
                 data={graphData}
                 />
             </BasicBarGraph>
             ) : (
             <div>Loading data...</div>
-            )}
-        </div>
-        );
+            )        
+      )
 }
 
 export default DoctorRatios;
