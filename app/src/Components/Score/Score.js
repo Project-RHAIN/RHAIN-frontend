@@ -33,45 +33,58 @@ const marks = [
 ];
 
 const CustomSlider = styled(Slider)(({ theme }) => ({
-    color: theme.palette.mode === 'dark' ? '#3880ff' : '#3880ff',
-    height: 2,
-    padding: '15px 0',
-    '& .MuiSlider-thumb': {
-      height: 18,
-      width: 18,
-      backgroundColor: theme.palette.primary,    
+  color: theme.palette.mode === 'dark' ? '#3880ff' : '#3880ff',
+  height: 10,
+  padding: '15px 0',
+  '& .MuiSlider-thumb': {
+    height: 24,
+    width: 24,
+    backgroundColor: '#fff',
+    border: '4px solid #3880ff',
+    '&:focus, &:hover, &$active': {
+      boxShadow: 'none',
     },
-    '& .MuiSlider-valueLabel': {
-      fontSize: 12,
-      fontWeight: 'bold',
-      top: 4,
-      backgroundColor: 'unset',
-      color: theme.palette.text.primary,
-      '&:before': {
-        display: 'none',
-      },
-      '& *': {
-        background: 'transparent',
-        color: theme.palette.mode === 'dark' ? '#fff' : '#000',
-      },
+    '&$active': {
+      backgroundColor: '#fff',
+      border: '4px solid #fff',
     },
-    '& .MuiSlider-track': {
-      border: 'none',
+  },
+  '& .MuiSlider-valueLabel': {
+    fontSize: 14,
+    fontWeight: 'bold',
+    top: 5,
+    backgroundColor: 'unset',
+    color: theme.palette.text.primary,
+    '&:before': {
+      display: 'none',
     },
-    '& .MuiSlider-rail': {
-      opacity: 0.5,
-      backgroundColor: '#bfbfbf',
+    '& *': {
+      background: 'transparent',
+      color: theme.palette.mode === 'dark' ? '#fff' : '#000',
     },
-    '& .MuiSlider-mark': {
-      backgroundColor: '#bfbfbf',
-      height: 8,
-      width: 1,
-      '&.MuiSlider-markActive': {
-        opacity: 1,
-        backgroundColor: 'currentColor',
-      },
+  },
+  '& .MuiSlider-track': {
+    border: 'none',
+    height: 10,
+    borderRadius: 5,
+    backgroundImage: `linear-gradient(to right, #ff0000 0%, #ff8800 33.33%, #ffff00 50%, #00cc00 66.67%, #00cc00 100%)`,
+  },
+  '& .MuiSlider-rail': {
+    opacity: 0.5,
+    backgroundColor: '#bfbfbf',
+    height: 10,
+    borderRadius: 5,
+  },
+  '& .MuiSlider-mark': {
+    backgroundColor: '#bfbfbf',
+    height: 8,
+    width: 1,
+    '&.MuiSlider-markActive': {
+      opacity: 1,
+      backgroundColor: 'currentColor',
     },
-  }));
+  },
+}));
 
 
   
@@ -100,5 +113,6 @@ const Score = (props) => {
         </React.Fragment>
     )
 }
+
 
 export default Score;
