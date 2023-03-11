@@ -9,7 +9,7 @@ const DoctorRatios = (props) => {
     const {state, county} = props.location;
 
     useEffect(() => {
-        fetch(`http://localhost:8000/clinical-care?county_name=${county}`)
+        fetch(`http://localhost:8000/clinical-care?state_name=${state}&county_name=${county}`)
         .then(response => response.json())
         .then(data => {        
             var gdata = []
@@ -29,7 +29,7 @@ const DoctorRatios = (props) => {
     console.log("County is ", county)
     console.log("GRAPH DATA", graphData)
       return (        
-        <div key={JSON.stringify(graphData)}>  {/* IMPORTANT Now gives the updated value but looks a little buggy*/}
+        <div style={{height: '100%', width: '100%'}} key={JSON.stringify(graphData)}>  {/* IMPORTANT Now gives the updated value but looks a little buggy*/}
             {graphData.length > 0 ? (
             <BasicBarGraph
                 xlabel=""
