@@ -9,7 +9,7 @@ const DoctorRatios = (props) => {
     const {state, county} = props.location;
 
     useEffect(() => {
-        fetch(`http://localhost:8000/county-info?county_name=${county}`)
+        fetch(`http://localhost:8000/clinical-care?county_name=${county}`)
         .then(response => response.json())
         .then(data => {        
             var gdata = []
