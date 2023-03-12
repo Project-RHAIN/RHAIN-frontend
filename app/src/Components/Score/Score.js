@@ -52,7 +52,7 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
   '& .MuiSlider-valueLabel': {
     fontSize: 14,
     fontWeight: 'bold',
-    top: 5,
+    top: 1,
     backgroundColor: 'unset',
     color: theme.palette.text.primary,
     '&:before': {
