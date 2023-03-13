@@ -6,107 +6,116 @@ import Slider from '@mui/material/Slider';
 import './Score.scss'
 
 const marks = [
-    {
-      value: 0,
-      label: '0',
-    },    
-    {
+  {
+    value: 0,
+    label: '0',
+  },    
+  {
     value: 2,
     label: '',
-    },    
-    {
+  },    
+  {
     value: 4,
     label: '',
-    },    
-    {
+  },    
+  {
     value: 6,
     label: '',
-    },    
-    {
+  },    
+  {
     value: 8,
     label: '',
-    },    
-    {
-      value: 10,
-      label: '10',
-    },
+  },    
+  {
+    value: 10,
+    label: '10',
+  },
 ];
 
-const CustomSlider = styled(Slider)(({ theme }) => ({
-    color: theme.palette.mode === 'dark' ? '#3880ff' : '#3880ff',
-    height: 2,
-    padding: '15px 0',
-    '& .MuiSlider-thumb': {
-      height: 18,
-      width: 18,
-      backgroundColor: theme.palette.primary,    
-    },
-    '& .MuiSlider-valueLabel': {
-      fontSize: 12,
-      fontWeight: 'bold',
-      top: 4,
-      backgroundColor: 'unset',
-      color: theme.palette.text.primary,
-      '&:before': {
-        display: 'none',
-      },
-      '& *': {
-        background: 'transparent',
-        color: theme.palette.mode === 'dark' ? '#fff' : '#000',
-      },
-    },
-    '& .MuiSlider-track': {
-      border: 'none',
-    },
-    '& .MuiSlider-rail': {
-      opacity: 0.5,
-      backgroundColor: '#bfbfbf',
-    },
-    '& .MuiSlider-mark': {
-      backgroundColor: '#bfbfbf',
-      height: 8,
-      width: 1,
-      '&.MuiSlider-markActive': {
-        opacity: 1,
-        backgroundColor: 'currentColor',
-      },
-    },
-  }));
+const getTrackColor = (value) => {
+  if (value <= 3) {
+    return '#FF6B6B'; // red
+  } else if (value <= 7) {
+    return '#FFC107'; // yellow
+  } else {
+    return '#4CAF50'; // green
+  }
+}
 
+const CustomSlider = styled(Slider)(({ theme, value }) => ({
+  color: theme.palette.mode === 'dark' ? '#3880ff' : '#3880ff',
+  height: 8,
+  padding: '15px 0',
+  '& .MuiSlider-thumb': {
+    height: 24,
+    width: 24,
+    backgroundColor: theme.palette.primary,    
+  },
+  '& .MuiSlider-valueLabel': {
+    fontSize: 12,
+    fontWeight: 'bold',
+    top: 4,
+    backgroundColor: 'unset',
+    color: theme.palette.text.primary,
+    '&:before': {
+      display: 'none',
+    },
+    '& *': {
+      background: 'transparent',
+      color: theme.palette.mode === 'dark' ? '#fff' : '#000',
+    },
+  },
+  '& .MuiSlider-track': {
+    border: 'none',
+    height: 8,
+    backgroundColor: getTrackColor(value),
+  },
+  '& .MuiSlider-rail': {
+    opacity: 0.5,
+    backgroundColor: '#bfbfbf',
+    height: 8,
+  },
+  '& .MuiSlider-mark': {
+    backgroundColor: '#bfbfbf',
+    height: 8,
+    width: 1,
+    '&.MuiSlider-markActive': {
+      opacity: 1,
+      backgroundColor: 'currentColor',
+    },
+  },
+}));
 
-  
 const Score = (props) => {
 
-    const {type} = props;
-    const [sliderValueObjective, setSliderValueObjective] = useState(0);
-    const [sliderValuePerception, setSliderValuePerception] = useState(0);
-    console.log(props)
-    const {state, county} = props.locationObject;
+  const {type} = props;
+  const [sliderValueObjective, setSliderValueObjective] = useState(0);
+  const [sliderValuePerception, setSliderValuePerception] = useState(0);
+  const {state, county} = props.locationObject;
 
-    useEffect(() => {
-      fetch(`http://localhost:8000/health-score?state_name=${state}&county_name=${county}`)
-      .then(response => response.json())
-      .then(data => {        
-          // console.log((data["Health Score"]/10).toFixed(2))
-          setSliderValueObjective((data["Health Score"]/10).toFixed(2))
-      })
-      .catch(error => console.error(error));
+  useEffect(() => {
+    fetch(`http://localhost:8000/health-score?state_name=${state}&county_name=${county}`)
+    .then(response => response.json())
+    .then(data => {        
+        // console.log((data["Health Score"]/10).toFixed(2))
+        setSliderValueObjective((data["Health Score"]/10).toFixed(2))
+    })
+    .catch(error => console.error(error));
 
-      fetch(`http://localhost:8000/perception-score?state_name=${state}&county_name=${county}`)
-      .then(response => response.json())
-      .then(data => {        
-          // console.log((data["Health Score"]/10).toFixed(2))
-          console.log(data["Perception score"])
-          setSliderValuePerception(parseFloat(data["Perception score"]).toFixed(2))
-      })
-      .catch(error => console.error(error));
+    fetch(`http://localhost:8000/perception-score?state_name=${state}&county_name=${county}`)
+    .then(response => response.json())
+    .then(data => {        
+        // console.log((data["Health Score"]/10).toFixed(2))
+        console.log(data["Perception score"])
+        setSliderValuePerception(parseFloat(data["Perception score"]).toFixed(2))
+    })
+    .catch(error => console.error(error));
 
   },[county])
-
-    return (
-        <React.Fragment>
-            <Heading>{type === "objective" ? "Objective" : "Perception"} Score</Heading>
-            <Box
+  return (
+    <React.Fragment>
+      <Heading>{type === "objective" ? "Objective" : "Perception"} Score</Heading>
+        <Box
                 className='score-box'
             >
             {sliderValuePerception ? 
@@ -122,9 +131,9 @@ const Score = (props) => {
                 marks={marks}
             /> : 
             <>No data to show</>}
-            </Box>
-        </React.Fragment>
-    )
+        </Box>
+    </React.Fragment>
+  )
 }
 
 export default Score;
