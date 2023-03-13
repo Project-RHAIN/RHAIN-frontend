@@ -1,23 +1,24 @@
 import React from "react";
 import Heading from "../Common/Heading/Heading";
 import BasicTabs from "../Common/BasicTabs/BasicTabs";
-import HospitalAdmissions from "../Graphs/HospitalAdmissions";
-import Livability from "../Graphs/Livability";
+// import HospitalAdmissions from "../Graphs/HospitalAdmissions";
+// import Livability from "../Graphs/Livability";
 import DoctorRatios from "../Graphs/DoctorRatios";
-import Fitness from "../Graphs/Fitness";
+import Fitness from "../Graphs/Fitness"
 import RegulatedIndustries from "../Graphs/RegulatedIndustries"
 import Crime from "../Graphs/Crime";
 import Health from "../Graphs/Health";
-import Income from "../Graphs/Income";
+// import Income from "../Graphs/Income";
 
 const Visualization = (props) => {
 
-    const {visualizations, curVis, setCurVis} = props.visData
+    const {visualizations, curVis, setCurVis, trend} = props.visData
     const {state, county} = props.locationObject
 
     const location = {
         state,
-        county
+        county,
+        trend
     }
 
     const visTabs = {        

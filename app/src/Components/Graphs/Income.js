@@ -6,7 +6,7 @@ const Income = (props) => {
     
     const [graphData, setData] = useState([])
 
-    const {state, county} = props.location;
+    const {state, county, trend} = props.location;
 
     useEffect(() => {
         fetch(`http://localhost:8000/income?state_name=${state}&county_name=${county}`)

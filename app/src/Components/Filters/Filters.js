@@ -20,10 +20,14 @@ import { FormGroup,Checkbox } from "@mui/material";
 
 const Filters = (props) => {
 
-    const {visualizations, curVis, setCurVis} = props.visData
+    const {visualizations, curVis, setCurVis, trend, setTrend} = props.visData
 
     const handleVisChange = (event) => {
       setCurVis(event.target.value)
+    }
+
+    const changeTrendData = (event) => {
+      setTrend(event.target.checked)
     }
 
     return (
@@ -78,8 +82,15 @@ const Filters = (props) => {
             </div> */}
             <div>
                 <FormGroup style={{marginLeft: '15px'}}>
-                    <FormControlLabel control={<Checkbox />} label="See trend data" />
-                    <FormControlLabel control={<Checkbox />} label="Show Demographic Data" />
+                    <FormControlLabel 
+                      control={
+                        <Checkbox 
+                          checked={trend}
+                          onChange={changeTrendData}
+                        />
+                      } 
+                      label="See trend data" />
+                    <FormControlLabel control={<Checkbox />} label="Show Data on Map" />
                 </FormGroup>
             </div>
         </div>

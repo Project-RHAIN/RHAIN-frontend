@@ -6,7 +6,7 @@ const RegulatedIndustries = (props) => {
     
     const [graphData, setData] = useState([])
 
-    const {state, county} = props.location;
+    const {state, county, trend} = props.location;
 
     useEffect(() => {
         fetch(`http://localhost:8000/regulated-industries?state_name=${state}&county_name=${county}`)

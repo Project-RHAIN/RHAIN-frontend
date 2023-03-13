@@ -10,9 +10,6 @@ import './Dashboard.scss'
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import Filters from "../../Components/Filters/Filters";
 
-var userSelectedStateValue = null;
-var userSelectedCountyValue = null;
-
 const Dashboard = (props) => {
     
     const [state, setState] = useState('');
@@ -50,10 +47,14 @@ const Dashboard = (props) => {
 
     const [curVis, setCurVis] = useState('healthB')
 
+    const [trend, setTrend] = useState(true);
+
     const visData = {
         curVis,
         setCurVis,
-        visualizations
+        visualizations,
+        trend,
+        setTrend
     }
 
     return (
