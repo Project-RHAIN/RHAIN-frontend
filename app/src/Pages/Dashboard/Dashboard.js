@@ -38,10 +38,10 @@ const Dashboard = (props) => {
           value: 'socioEco',
           label: 'Socio-economic factors',
         },
-        {
-          value: 'physEnv',
-          label: 'Physical Environment',
-        },
+        // {
+        //   value: 'physEnv',
+        //   label: 'Physical Environment',
+        // },
         {
           value: 'lifeQuality',
           label: 'Quality of Life',

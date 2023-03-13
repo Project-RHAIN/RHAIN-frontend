@@ -2,9 +2,10 @@ import React from "react";
 import {VictoryChart, VictoryTheme, VictoryAxis, VictoryLabel} from 'victory'
 
 const BasicBarGraph = (props) => {
-    const {xlabel, ylabel} = props
+    const {xlabel, ylabel, maxHeight} = props
     // let elHeight = document.getElementById('box-graph').clientHeight
     // console.log("Width",HTMLDivElement.getBoundingClientRect().width)
+    let height = maxHeight ? maxHeight : 2000;
     return (
         <VictoryChart            
             theme={VictoryTheme.material}
@@ -20,7 +21,7 @@ const BasicBarGraph = (props) => {
             <VictoryAxis
                 dependentAxis
                 tickFormat={(y) => y}
-                domain={{y: [0, 2000]}}
+                domain={{y: [0, height]}}
                 label={ylabel}
                 axisLabelComponent={<VictoryLabel dy={-40} style={{fontSize: 20}} />}                       
             />

@@ -4,6 +4,11 @@ import BasicTabs from "../Common/BasicTabs/BasicTabs";
 import HospitalAdmissions from "../Graphs/HospitalAdmissions";
 import Livability from "../Graphs/Livability";
 import DoctorRatios from "../Graphs/DoctorRatios";
+import Fitness from "../Graphs/Fitness";
+import RegulatedIndustries from "../Graphs/RegulatedIndustries"
+import Crime from "../Graphs/Crime";
+import Health from "../Graphs/Health";
+import Income from "../Graphs/Income";
 
 const Visualization = (props) => {
 
@@ -18,21 +23,12 @@ const Visualization = (props) => {
     const visTabs = {        
         'healthB': [
             {
-                label: 'Hospitalization Rate',
-                component: <HospitalAdmissions />
-                // component: <>Hospital Admissions</>
+                label: 'Fitness',
+                component: <Fitness location={location}/>
             },
             {
-                label: 'Livability Factors',
-                component: <Livability />
-            },
-            {
-                label: 'Affordability',
-                component: <>Affordability</>
-            },
-            {
-                label: 'Pollution Levels',
-                component: <>Pollution Levels</>
+                label: 'Impact of Regulated Industries',
+                component: <RegulatedIndustries location={location}/>
             },
         ],
         'clinCare': [
@@ -41,55 +37,35 @@ const Visualization = (props) => {
                 component: <DoctorRatios location={location}/>
                 // component: <>Doctor Ratios - primary care, dentists, mental health providers</>
             },
-            {
-                label: 'Uninsured',
-                component: <>Uninsured - Adults, children, older</>
-            },
-            {
-                label: 'Preventable Hospital Stays',
-                component: <>Preventable Hospital Stays</>
-            },
-            {
-                label: 'Vaccinations',
-                component: <>Vaccinations</>
-            },
+            // {
+            //     label: 'Uninsured',
+            //     component: <>Uninsured - Adults, children, older</>
+            // },
         ],
         'socioEco': [
             {
-                label: 'Education',
-                component: <>Education - High school completion, college completion, scores</>
+                label: 'Crime',
+                component: <Crime location={location}/>
             },
-            {
-                label: 'Employment',
-                component: <>Employment</>
-            },
-            {
-                label: 'Income',
-                component: <>Income - Avg income, income inequality, gender pay gap, </>
-            },
-            {
-                label: 'Safety',
-                component: <>Safety - Violent crime, Injury deaths, homicides, suicides</>
-            },
+            // {
+            //     label: 'Income',
+            //     component: <Income location={location} />
+            // },
         ],
         'physEnv': [
-            {
-                label: 'Air & Water Quality',
-                component: <>Air & Water Quality</>
-            },
-            {
-                label: 'Housing & Transit',
-                component: <>Housing & Transit - housing problems, traffic, cost burden</>
-            },
+            // {
+            //     label: 'Air & Water Quality',
+            //     component: <>Air & Water Quality</>
+            // },
+            // {
+            //     label: 'Housing & Transit',
+            //     component: <>Housing & Transit - housing problems, traffic, cost burden</>
+            // },
         ],
         'lifeQuality': [
             {
-                label: 'Life Expectancy',
-                component: <>Life Expectancy</>
-            },
-            {
-                label: '% of Poor Days',
-                component: <>% of poor days - physical, mental, health</>
+                label: 'Health',
+                component: <Health location={location}/>
             },
         ]
     }

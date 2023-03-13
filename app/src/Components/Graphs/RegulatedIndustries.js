@@ -2,14 +2,14 @@ import React, {useEffect, useState} from "react"
 import BasicBarGraph from "./Common/BasicBarGraph";
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 
-const DoctorRatios = (props) => {        
+const RegulatedIndustries = (props) => {        
     
     const [graphData, setData] = useState([])
 
     const {state, county} = props.location;
 
     useEffect(() => {
-        fetch(`http://localhost:8000/clinical-care?state_name=${state}&county_name=${county}`)
+        fetch(`http://localhost:8000/regulated-industries?state_name=${state}&county_name=${county}`)
         .then(response => response.json())
         .then(data => {        
             var gdata = []
@@ -34,6 +34,7 @@ const DoctorRatios = (props) => {
             <BasicBarGraph
                 xlabel=""
                 ylabel="Doctors per person"
+                maxHeight = {80}
             >
                 <VictoryBar
                 // key={JSON.stringify(graphData)}
@@ -53,4 +54,4 @@ const DoctorRatios = (props) => {
         );
 }
 
-export default DoctorRatios;
+export default RegulatedIndustries;
