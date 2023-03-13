@@ -68,12 +68,12 @@ const Dashboard = (props) => {
                     </Grid>
                     <Grid item xs={12} className="grid-item-sub" style={{paddingTop: '6px', paddingBottom: '6px'}}>
                         <Paper className="paperContainer">
-                            <Score type="objective" value={8.8}/>
+                            <Score type="objective" locationObject={locationObject}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} className="grid-item-sub" style={{paddingTop: '6px'}}>
                         <Paper className="paperContainer">
-                            <Score type="perception" value={7.5}/>
+                            <Score type="perception" locationObject={locationObject}/>
                         </Paper>
                     </Grid>
                 </Grid>                

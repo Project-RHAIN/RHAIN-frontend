@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Heading from "../Common/Heading/Heading";
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
@@ -77,7 +77,31 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
   
 const Score = (props) => {
 
-    const {type, value} = props;
+    const {type} = props;
+    const [sliderValueObjective, setSliderValueObjective] = useState(0);
+    const [sliderValuePerception, setSliderValuePerception] = useState(0);
+    console.log(props)
+    const {state, county} = props.locationObject;
+
+    useEffect(() => {
+      fetch(`http://localhost:8000/health-score?state_name=${state}&county_name=${county}`)
+      .then(response => response.json())
+      .then(data => {        
+          // console.log((data["Health Score"]/10).toFixed(2))
+          setSliderValueObjective((data["Health Score"]/10).toFixed(2))
+      })
+      .catch(error => console.error(error));
+
+      fetch(`http://localhost:8000/perception-score?state_name=${state}&county_name=${county}`)
+      .then(response => response.json())
+      .then(data => {        
+          // console.log((data["Health Score"]/10).toFixed(2))
+          console.log(data["Perception score"])
+          setSliderValuePerception(parseFloat(data["Perception score"]).toFixed(2))
+      })
+      .catch(error => console.error(error));
+
+  },[county])
 
     return (
         <React.Fragment>
@@ -85,9 +109,10 @@ const Score = (props) => {
             <Box
                 className='score-box'
             >
+            {sliderValuePerception ? 
             <CustomSlider
                 aria-label="Custom marks"                
-                value={value}                
+                value={type === "objective" ? sliderValueObjective : sliderValuePerception}
                 step={1}
                 min={0}
                 max={10}
@@ -95,7 +120,8 @@ const Score = (props) => {
                 disableSwap
                 // valueLabelDisplay="auto"
                 marks={marks}
-            />
+            /> : 
+            <>No data to show</>}
             </Box>
         </React.Fragment>
     )
