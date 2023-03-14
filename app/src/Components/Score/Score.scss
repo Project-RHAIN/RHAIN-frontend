@@ -1,3 +1,18 @@
 .score-box {
     padding: 10px 10px 0px 10px;
 }
+
+.modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    max-width: 500px;
+    max-height: 90%;
+    overflow: auto;
+    background-color: white;
+    border: 1px solid #797979;
+    box-shadow: 24;
+    padding: 20px;
+}

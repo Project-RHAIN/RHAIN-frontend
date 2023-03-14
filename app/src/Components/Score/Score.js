@@ -3,6 +3,8 @@ import Heading from "../Common/Heading/Heading";
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
+import { Modal, Typography } from "@mui/material";
 import './Score.scss'
 
 const marks = [
@@ -91,7 +93,13 @@ const Score = (props) => {
   const {type} = props;
   const [sliderValueObjective, setSliderValueObjective] = useState(0);
   const [sliderValuePerception, setSliderValuePerception] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
   const {state, county} = props.locationObject;
+
+  const [featureData, setFeatureData] = useState([])
+
+  const handleOpen = () => setModalOpen(true);
+  const handleClose = () => setModalOpen(false);
 
   useEffect(() => {
     fetch(`http://localhost:8000/health-score?state_name=${state}&county_name=${county}`)
@@ -112,12 +120,21 @@ const Score = (props) => {
     })
     .catch(error => console.error(error));
 
+    fetch(`http://localhost:8000/feature-score?state_name=${state}&county_name=${county}`)
+    .then(response => response.json())
+    .then(data => {        
+        // console.log((data["Health Score"]/10).toFixed(2))        
+        // if()        
+        setFeatureData(data)
+    })
+    .catch(error => console.error(error));
+
   },[county])
 
   if(type === "objective") {  
     return (
       <React.Fragment>
-        <Heading>Objective Score</Heading>
+        <Heading>Objective Score <OpenInFullIcon onClick={handleOpen} style={{fontSize: '18px'}}/></Heading>
           <Box
                   className='score-box'
               >
@@ -135,6 +152,45 @@ const Score = (props) => {
               /> : 
               <>No data to show</>}
           </Box>
+          <Modal
+            open={modalOpen}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+
+            <Box className="modal-box">
+              {featureData.length > 0 ?
+              <>
+              <Heading>Additional Objective Score Parameters</Heading>
+              <p style={{paddingBottom: '4px'}}>This is not an exhaustive list but a list of some important parameters that are used to calculate the objective score
+              </p></> : null }
+              {featureData.length > 0 ?                  
+                  featureData.map((obj, index) => {                    
+                    const [key, value] = Object.entries(obj)[0];
+                    console.log("GOT FEATURE",key, value)
+                    return (
+                      <>
+                    <Typography style={{paddingBottom: '5px'}} key={key}>{key}</Typography>
+                    <CustomSlider
+                        aria-label="Custom marks"                
+                        key={key}
+                        value={value}
+                        step={1}
+                        min={0}
+                        max={10}
+                        valueLabelDisplay="on"              
+                        disableSwap
+                        // valueLabelDisplay="auto"
+                        marks={marks}
+                    />
+                    </>
+                    )
+                  })                
+                : <Heading>No data to display</Heading>
+              }
+            </Box>
+          </Modal>
       </React.Fragment>
     )
   }

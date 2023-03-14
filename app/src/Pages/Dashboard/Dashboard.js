@@ -47,7 +47,7 @@ const Dashboard = (props) => {
 
     const [curVis, setCurVis] = useState('healthB')
 
-    const [trend, setTrend] = useState(true);
+    const [trend, setTrend] = useState(false);
 
     const visData = {
         curVis,
