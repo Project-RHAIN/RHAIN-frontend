@@ -107,21 +107,47 @@ const Score = (props) => {
     .then(data => {        
         // console.log((data["Health Score"]/10).toFixed(2))
         console.log(data["Perception score"])
+        // if()
         setSliderValuePerception(parseFloat(data["Perception score"]).toFixed(2))
     })
     .catch(error => console.error(error));
 
   },[county])
+
+  if(type === "objective") {  
+    return (
+      <React.Fragment>
+        <Heading>Objective Score</Heading>
+          <Box
+                  className='score-box'
+              >
+              {sliderValueObjective <= 10 &&  sliderValueObjective > 0 ?  
+              <CustomSlider
+                  aria-label="Custom marks"                
+                  value={sliderValueObjective}
+                  step={1}
+                  min={0}
+                  max={10}
+                  valueLabelDisplay="on"              
+                  disableSwap
+                  // valueLabelDisplay="auto"
+                  marks={marks}
+              /> : 
+              <>No data to show</>}
+          </Box>
+      </React.Fragment>
+    )
+  }
   return (
     <React.Fragment>
-      <Heading>{type === "objective" ? "Objective" : "Perception"} Score</Heading>
+      <Heading>Perception Score</Heading>
         <Box
                 className='score-box'
             >
-            {sliderValuePerception ? 
+            {sliderValuePerception <= 10 &&  sliderValuePerception > 0 ? 
             <CustomSlider
                 aria-label="Custom marks"                
-                value={type === "objective" ? sliderValueObjective : sliderValuePerception}
+                value={sliderValuePerception}
                 step={1}
                 min={0}
                 max={10}
@@ -134,6 +160,7 @@ const Score = (props) => {
         </Box>
     </React.Fragment>
   )
+
 }
 
 export default Score;

@@ -9,7 +9,7 @@ const Health = (props) => {
     const {state, county, trend} = props.location;
 
     useEffect(() => {
-        fetch(`http://localhost:8000/health?state_name=${state}&county_name=${county}`)
+        fetch(`http://localhost:8000/health?state_name=${state}&county_name=${county}&trend=${trend}`)
         .then(response => response.json())
         .then(data => {        
             var gdata = []
@@ -33,7 +33,7 @@ const Health = (props) => {
             {graphData.length > 0 ? (
             <BasicBarGraph
                 xlabel=""
-                yperlabel="Doctors  person"
+                ylabel="Number of days"
                 maxHeight={10}
             >
                 <VictoryBar

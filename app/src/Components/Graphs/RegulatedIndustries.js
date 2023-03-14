@@ -9,7 +9,7 @@ const RegulatedIndustries = (props) => {
     const {state, county, trend} = props.location;
 
     useEffect(() => {
-        fetch(`http://localhost:8000/regulated-industries?state_name=${state}&county_name=${county}`)
+        fetch(`http://localhost:8000/regulated-industries?state_name=${state}&county_name=${county}&trend=${trend}`)
         .then(response => response.json())
         .then(data => {        
             var gdata = []
@@ -33,7 +33,7 @@ const RegulatedIndustries = (props) => {
             {graphData.length > 0 ? (
             <BasicBarGraph
                 xlabel=""
-                ylabel="Doctors per person"
+                ylabel="Percentage"
                 maxHeight = {80}
             >
                 <VictoryBar

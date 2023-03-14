@@ -9,7 +9,7 @@ const Crime = (props) => {
     const {state, county, trend} = props.location;
 
     useEffect(() => {
-        fetch(`http://localhost:8000/crime?state_name=${state}&county_name=${county}`)
+        fetch(`http://localhost:8000/crime?state_name=${state}&county_name=${county}&trend=${trend}`)
         .then(response => response.json())
         .then(data => {        
             var gdata = []
@@ -33,7 +33,7 @@ const Crime = (props) => {
             {graphData.length > 0 ? (
             <BasicBarGraph
                 xlabel=""
-                ylabel="Doctors per person"
+                ylabel="Number of reports per 100k population"
                 maxHeight = {800}
             >
                 <VictoryBar

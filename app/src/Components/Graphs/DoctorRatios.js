@@ -9,7 +9,7 @@ const DoctorRatios = (props) => {
     const {state, county, trend} = props.location;
 
     useEffect(() => {
-        fetch(`http://localhost:8000/clinical-care?state_name=${state}&county_name=${county}`)
+        fetch(`http://localhost:8000/clinical-care?state_name=${state}&county_name=${county}&trend=${trend}`)
         .then(response => response.json())
         .then(data => {        
             var gdata = []
@@ -32,7 +32,7 @@ const DoctorRatios = (props) => {
         graphData.length > 0 ? (
             <BasicBarGraph
                 xlabel=""
-                ylabel="Doctors per person"
+                ylabel="Number of people per doctor"
                 key={JSON.stringify(graphData)}
             >
                 <VictoryBar
