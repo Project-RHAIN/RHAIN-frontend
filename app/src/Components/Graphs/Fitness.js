@@ -17,9 +17,9 @@ const Fitness = (props) => {
         .then(data => {
             if (trend) {
                 console.log(data)
-                console.log(data.length)
-                console.log(Object.keys(data[0]).length)
-                console.log(Object.keys(data[0])[0])
+                // console.log(data.length)
+                // console.log(Object.keys(data[0]).length)
+                // console.log(Object.keys(data[0])[0])
                 setTrendData(data)
             }
             else {
@@ -131,7 +131,7 @@ const Fitness = (props) => {
             <>Please select a state and county</>
         )
     } else {
-    if(graphData.length > 0) {
+    if(graphData.length > 0) {      
       return (            
         <div style={{height: '100%', width: '100%'}} key={JSON.stringify(graphData)}>  {/* IMPORTANT Now gives the updated value but looks a little buggy*/}            
             <BasicBarGraph
