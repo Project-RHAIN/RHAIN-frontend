@@ -6,6 +6,7 @@ import Insights from "../../Components/Insights/Insights";
 import RegionalData from "../../Components/RegionalData/RegionalData";
 import Map from "../../Components/Map/Map";
 import Score from "../../Components/Score/Score";
+import MenuBar from '../../Components/MenuBar/MenuBar'
 import './Dashboard.scss'
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import Filters from "../../Components/Filters/Filters";
@@ -58,6 +59,8 @@ const Dashboard = (props) => {
     }
 
     return (
+        <>
+        <MenuBar />
         <Grid container className="grid-container">
           <Grid container item xs={12} className="top-row">
             <Grid item xs={2} className="grid-item">
@@ -108,6 +111,7 @@ const Dashboard = (props) => {
             </Grid>
             </Grid>
         </Grid>
+        </>
       );
 }
 
