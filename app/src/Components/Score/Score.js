@@ -115,7 +115,7 @@ const Score = (props) => {
     .then(response => response.json())
     .then(data => {        
         // console.log((data["Health Score"]/10).toFixed(2))
-        console.log(data["Perception score"])
+        // console.log(data["Perception score"])
         // if()
         setSliderValuePerception(parseFloat(data["Perception score"]).toFixed(2))
     })
@@ -177,7 +177,7 @@ const Score = (props) => {
               {featureData.length > 0 ?                  
                   featureData.map((obj, index) => {                    
                     const [key, value] = Object.entries(obj)[0];
-                    console.log("GOT FEATURE",key, value)
+                    // console.log("GOT FEATURE",key, value)
                     return (
                       <>
                     <Typography style={{paddingBottom: '5px'}} key={key}>{key} - Score</Typography>
