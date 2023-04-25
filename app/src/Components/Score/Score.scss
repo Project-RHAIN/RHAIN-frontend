@@ -2,6 +2,13 @@
     padding: 10px 10px 0px 10px;
 }
 
+.obj-score-icon {
+    font-size: 18px !important;     
+    cursor: pointer;
+    margin-left: auto !important;
+    margin-right: 5px;
+}
+
 .modal-box {
     position: absolute;
     top: 50%;
@@ -15,4 +22,8 @@
     border: 1px solid #797979;
     box-shadow: 24;
     padding: 20px;
+
+    .heading-main {
+        margin: 0;
+    }
 }

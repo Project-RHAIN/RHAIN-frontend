@@ -2,7 +2,7 @@ import './Heading.scss'
 
 const Heading = (props) => {
     return (
-        <h1 className='heading-main'>
+        <h1 style={props.style} className='heading-main'>
             {props.children}
         </h1>
     )

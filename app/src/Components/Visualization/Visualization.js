@@ -76,7 +76,7 @@ const Visualization = (props) => {
     return (
         <React.Fragment>
             <Heading>Visualizations - {visHeading}</Heading>
-            <BasicTabs tabData={visTabs[curVis]} />
+            <BasicTabs tabData={visTabs[curVis]} tabHeading={visHeading}/>
         </React.Fragment>
     )
 }

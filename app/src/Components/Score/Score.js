@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
+import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
 import { Modal, Typography } from "@mui/material";
 import './Score.scss'
 
@@ -133,8 +134,16 @@ const Score = (props) => {
 
   if(type === "objective") {  
     return (
-      <React.Fragment>
-        <Heading>Objective Score <OpenInFullIcon onClick={handleOpen} style={{fontSize: '18px'}}/></Heading>
+      <div>
+        <Heading style={{display: 'flex'}}>
+          Objective Score 
+          {sliderValueObjective <= 10 &&  sliderValueObjective > 0 ?
+          <OpenInFullIcon
+            onClick={handleOpen}
+            className="obj-score-icon"
+            // style={{ fontSize: '18px', cursor: 'pointer', marginLeft: 'auto' }}
+          /> : null }
+        </Heading>
           <Box
                   className='score-box'
               >
@@ -163,7 +172,7 @@ const Score = (props) => {
               {featureData.length > 0 ?
               <>
               <Heading>Additional Objective Score Parameters</Heading>
-              <p style={{paddingBottom: '4px'}}>This is not an exhaustive list but a list of some important parameters that are used to calculate the objective score
+              <p style={{paddingBottom: '4px'}}>This is not an exhaustive list but a list of some important parameters that are used to calculate the objective score. The number here represents the score of the particular feature i.e. how well this county does for that parameter compared to all other counties in the country.
               </p></> : null }
               {featureData.length > 0 ?                  
                   featureData.map((obj, index) => {                    
@@ -171,7 +180,7 @@ const Score = (props) => {
                     console.log("GOT FEATURE",key, value)
                     return (
                       <>
-                    <Typography style={{paddingBottom: '5px'}} key={key}>{key}</Typography>
+                    <Typography style={{paddingBottom: '5px'}} key={key}>{key} - Score</Typography>
                     <CustomSlider
                         aria-label="Custom marks"                
                         key={key}
@@ -191,7 +200,7 @@ const Score = (props) => {
               }
             </Box>
           </Modal>
-      </React.Fragment>
+      </div>
     )
   }
   return (

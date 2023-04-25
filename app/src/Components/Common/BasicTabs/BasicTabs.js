@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -42,11 +43,15 @@ const a11yProps = (index) => {
 
 const BasicTabs = (props) => {
   const [value, setValue] = React.useState(0);
-  const {tabData} = props
+  const {tabData, tabHeading} = props
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {    
+    setValue(0);
+  },[tabHeading])
 
   return (
     <Box sx={{ height: '90%', display: 'block' }}>
