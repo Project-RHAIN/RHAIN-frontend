@@ -6,6 +6,12 @@
 
     h4 {
         margin: 5px;
+        display: flex;
+        font-weight: 500;
+
+        .icon {
+            margin-left: auto;
+        }
     }
 
     p {

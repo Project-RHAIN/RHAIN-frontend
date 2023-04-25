@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
-import OpenWithRoundedIcon from '@mui/icons-material/OpenWithRounded';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Modal, Typography } from "@mui/material";
 import './Score.scss'
 
@@ -138,7 +138,7 @@ const Score = (props) => {
         <Heading style={{display: 'flex'}}>
           Objective Score 
           {sliderValueObjective <= 10 &&  sliderValueObjective > 0 ?
-          <OpenInFullIcon
+          <InfoOutlinedIcon
             onClick={handleOpen}
             className="obj-score-icon"
             // style={{ fontSize: '18px', cursor: 'pointer', marginLeft: 'auto' }}
@@ -172,7 +172,8 @@ const Score = (props) => {
               {featureData.length > 0 ?
               <>
               <Heading>Additional Objective Score Parameters</Heading>
-              <p style={{paddingBottom: '4px'}}>This is not an exhaustive list but a list of some important parameters that are used to calculate the objective score. The number here represents the score of the particular feature i.e. how well this county does for that parameter compared to all other counties in the country.
+              <p style={{paddingBottom: '4px'}}>This is not an exhaustive list but a list of some important parameters that are used to calculate the objective score. The number here represents the score of the particular feature i.e. how well this county does for that parameter compared to all other counties in the country.<br /><br/>
+              This is how {county}, {state} performs compared to other states:
               </p></> : null }
               {featureData.length > 0 ?                  
                   featureData.map((obj, index) => {                    

@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import newspaper from '../../Images/newspaper.jpg'
-
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import './NewsCard.scss'
 
 const NewsCard = (props) => {
@@ -19,7 +19,7 @@ const NewsCard = (props) => {
                     style={{objectFit: 'cover'}}/>
             </Grid>
             <Grid item xs={10}>
-                <h4>{title}</h4>
+                <h4>{title}<a href={link} className="icon" target="_blank" rel="noreferrer"><OpenInNewRoundedIcon/></a></h4>
                 <p>{snippet}</p>
             </Grid>
         </Grid>

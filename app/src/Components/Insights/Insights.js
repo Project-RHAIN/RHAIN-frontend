@@ -45,7 +45,7 @@ const Insights = (props) => {
                             <NewsCard key={index} title={article.title} snippet={article.snippet} link={article.link} imglink={article.pagemap.cse_image ? article.pagemap.cse_image[0].src : null}/>
                         )
                     })                                      
-            : <p>Sorry no news articles to show!</p>
+            : <p style={{marginLeft: '10px'}}>Sorry, no updates to show!</p>
              }                
             </div>
         </React.Fragment>
