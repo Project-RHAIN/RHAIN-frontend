@@ -14,7 +14,7 @@ const Login = () => {
 
             <Grid item sm={8} className='column1'>  
                 <div className='left-container'>
-                <h1>Regional Healthcare Analysis and Improvement Network ASD</h1>
+                <h1>Regional Healthcare Analysis and Improvement Network</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. <br /> Maecenas accumsan lacus vel facilisis volutpat est velit. Nec ultrices dui sapien eget mi proin sed libero enim. Facilisis magna etiam tempor orci eu lobortis elementum nibh. Sit amet massa vitae tortor. Commodo ullamcorper a lacus vestibulum sed arcu. Massa tincidunt dui ut ornare lectus sit amet.</p>
                 </div>          
             </Grid>
