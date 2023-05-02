@@ -31,7 +31,7 @@ const Login = () => {
                 />; */}
 
                 <h1>Regional Healthcare Analysis and Improvement Network </h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. <br /> Maecenas accumsan lacus vel facilisis volutpat est velit. Nec ultrices dui sapien eget mi proin sed libero enim. Facilisis magna etiam tempor orci eu lobortis elementum nibh. Sit amet massa vitae tortor. Commodo ullamcorper a lacus vestibulum sed arcu. Massa tincidunt dui ut ornare lectus sit amet.</p>
+                <p>Our goal is to leverage the power of big data methodologies to provide insights into the issues surrounding healthcare delivery on a region-by-region basis. We aim to identify the primary problems of quality, accessibility, and affordability, and assign a score for each aspect for each region. By aggregating multiple sources of data, such as doctor/hospital reviews, income data, and proximity to hospitals, we analyze the raw data to produce valuable metrics that define the healthcare standards in a region. <br />Our user-friendly dashboard provides easy access to these insights, helping policymakers and healthcare professionals recognize the necessary actions to improve the system. Join us on our mission to make healthcare accessible and affordable for everyone.</p>
                 </div>          
             </Grid>
 
