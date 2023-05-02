@@ -1,8 +1,8 @@
 import React from "react";
-import {VictoryChart, VictoryTheme, VictoryAxis, VictoryLabel} from 'victory'
+import {VictoryChart, VictoryTheme, VictoryAxis, VictoryLabel, VictoryBar} from 'victory'
 
 const BasicBarGraph = (props) => {
-    const {xlabel, ylabel, maxHeight} = props
+    const {xlabel, ylabel, maxHeight, graphData} = props
     // let elHeight = document.getElementById('box-graph').clientHeight
     // console.log("Width",HTMLDivElement.getBoundingClientRect().width)
     let height = maxHeight ? maxHeight : 2000;
@@ -12,6 +12,7 @@ const BasicBarGraph = (props) => {
             domainPadding={70}
             width={900}
             height={400}
+            key={JSON.stringify(graphData)}
             >
             <VictoryAxis
                 tickFormat={(y) => y}
@@ -25,7 +26,16 @@ const BasicBarGraph = (props) => {
                 label={ylabel}
                 axisLabelComponent={<VictoryLabel dy={-40} style={{fontSize: 20}} />}                       
             />
-            {props.children}
+            <VictoryBar
+                // key={JSON.stringify(graphData)}
+                style={{
+                    data: { stroke: "#c43a31" },
+                    parent: { border: "1px solid #ccc" },
+                }}
+                labels={({ datum }) => datum.y.toFixed(2)}
+                animate={{ duration: 1000 }}
+                data={graphData}
+                />
         </VictoryChart>
     )
 }
