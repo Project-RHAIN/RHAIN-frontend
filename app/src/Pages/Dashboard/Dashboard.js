@@ -19,8 +19,11 @@ const Dashboard = (props) => {
     
     const [state, setState] = useState('');
     const [county, setCounty] = useState('');
-    const [trend, setTrend] = useState(false);
+    const [trend, setTrend] = useState(false);    
     const [tabValue, setTabValue] = React.useState(0);
+    const [heatMap, setHeatMap] = useState(false);
+    const [mapVis, setMapVis] = useState(null);
+    const [visParameters, setVisParameters] = useState([]);
 
     const locationObject = {
         state: state,
@@ -57,17 +60,17 @@ const Dashboard = (props) => {
         'healthB': [
             {
                 label: 'Fitness',
-                component: <Fitness location={locationObject}/>
+                component: <Fitness location={locationObject} setVisParameters={setVisParameters}/>
             },
             {
                 label: 'Impact of Regulated Industries',
-                component: <RegulatedIndustries location={locationObject}/>
+                component: <RegulatedIndustries location={locationObject} setVisParameters={setVisParameters}/>
             },
         ],
         'clinCare': [
             {
                 label: 'Doctor Ratios',
-                component: <DoctorRatios location={locationObject}/>
+                component: <DoctorRatios location={locationObject} setVisParameters={setVisParameters}/>
                 // component: <>Doctor Ratios - primary care, dentists, mental health providers</>
             },
             // {
@@ -78,7 +81,7 @@ const Dashboard = (props) => {
         'socioEco': [
             {
                 label: 'Crime',
-                component: <Crime location={locationObject}/>
+                component: <Crime location={locationObject} setVisParameters={setVisParameters}/>
             },
             // {
             //     label: 'Income',
@@ -98,7 +101,7 @@ const Dashboard = (props) => {
         'lifeQuality': [
             {
                 label: 'Health',
-                component: <Health location={locationObject}/>
+                component: <Health location={locationObject} setVisParameters={setVisParameters}/>
             },
         ]
     }
@@ -113,7 +116,11 @@ const Dashboard = (props) => {
         visTabs,
         setTrend,
         tabValue,
-        setTabValue
+        setTabValue, 
+        mapVis, 
+        setMapVis, 
+        heatMap, 
+        setHeatMap
     }
 
     return (
@@ -154,7 +161,7 @@ const Dashboard = (props) => {
           <Grid container item xs={12} className="bottom-row">
             <Grid item xs={2} className="grid-item">
                 <Paper className="paperContainer">
-                    <Filters visData={visData}/>
+                    <Filters visData={visData} visParameters={visParameters}/>
                 </Paper>
             </Grid>
             <Grid item xs={6} className="grid-item">

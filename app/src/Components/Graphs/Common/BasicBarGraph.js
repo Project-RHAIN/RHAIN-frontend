@@ -6,6 +6,7 @@ const BasicBarGraph = (props) => {
     // let elHeight = document.getElementById('box-graph').clientHeight
     // console.log("Width",HTMLDivElement.getBoundingClientRect().width)
     let height = maxHeight ? maxHeight : 2000;
+    // console.log(graphData)
     return (
         <VictoryChart            
             theme={VictoryTheme.material}

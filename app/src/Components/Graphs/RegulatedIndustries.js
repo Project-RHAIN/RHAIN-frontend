@@ -15,19 +15,24 @@ const RegulatedIndustries = (props) => {
         .then(response => response.json())
         .then(data => {      
             if (trend)   {
+                const keysArray = Object.keys(data[0]).filter(key => key !== 'Year');                
+                props.setVisParameters(keysArray)
                 setTrendData(data)
             }
             else {
             var gdata = []
+            var params = []
             Object.keys(data[0]).map(ele => {
                 gdata.push(
                     {
                         x: ele, y: data[0][ele]
                     }
                 )
-            })
-            console.log(gdata)
-            console.log("Use Effect called")            
+                params.push(ele)
+            })                
+            props.setVisParameters(params)
+            // console.log(gdata)
+            // console.log("Use Effect called")            
             setData(gdata)
         }
         })

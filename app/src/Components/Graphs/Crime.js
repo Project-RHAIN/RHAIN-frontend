@@ -15,26 +15,30 @@ const Crime = (props) => {
         .then(response => response.json())
         .then(data => {    
             if (trend) {
-                console.log(data)
+                const keysArray = Object.keys(data[0]).filter(key => key !== 'Year');                
+                props.setVisParameters(keysArray)
                 setTrendData(data)
             } else {    
             var gdata = []
+            var params = []
             Object.keys(data[0]).map(ele => {
                 gdata.push(
                     {
                         x: ele, y: data[0][ele]
                     }
                 )
-            })
-            console.log(gdata)
-            console.log("Use Effect called")            
+                params.push(ele)
+            })                
+            props.setVisParameters(params)
+            // console.log(gdata)
+            // console.log("Use Effect called")            
             setData(gdata)
         }
         })
         .catch(error => console.error(error));
     },[county, trend])
-    console.log("County is ", county)
-    console.log("GRAPH DATA", graphData)
+    // console.log("County is ", county)
+    // console.log("GRAPH DATA", graphData)
 
     if(trend) {
         if(trendData.length > 0) {            

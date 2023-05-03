@@ -14,10 +14,9 @@ var userSelectedCountyValue = null;
 const Map = (props) => {
 
     const {state, setState, county, setCounty} = props.locationObject
-    const {visTabs, curVis, tabValue} = props.visData
-
-    console.log("INMAP", state, county)
-    console.log("Tab stuff", curVis ,visTabs[curVis][tabValue])
+    const {heatMap, mapVis} = props.visData
+    
+    // console.log("Tab stuff", curVis ,visTabs[curVis][tabValue])
       
     const curState = state ? state : 'Kansas';
          
@@ -38,14 +37,21 @@ const Map = (props) => {
     };
 
     const clickState = (st) => {
-        console.log("state clicked", st)
+        // console.log("state clicked", st)
         setState(st.properties.name)
     }
 
     const clickCounty = (cnty) => {
-        console.log("county clicked", cnty)
+        // console.log("county clicked", cnty)
         setCounty(cnty.properties.name)
     }
+
+    useEffect(() => {
+        if(heatMap && mapVis !== '') {
+            console.log("I AM IN MAPPPPPP")
+            console.log("INMAP", state, mapVis, heatMap)
+        }            
+    }, [mapVis, state])
     
     return (
     <div className="mainMap">        

@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Heading from "../Common/Heading/Heading";
-import TextField from '@mui/material/TextField';
+import {TextField, MenuItem} from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel'
 import { FormGroup,Checkbox } from "@mui/material";
 
 const Filters = (props) => {
 
-    const {visualizations, curVis, setCurVis, trend, setTrend} = props.visData
+    const {visualizations, curVis, setCurVis, trend, setTrend, visTabs, tabValue, mapVis, setMapVis, heatMap, setHeatMap} = props.visData
+
+    // console.log("In Filters", visTabs[curVis][tabValue].label)
 
     const handleVisChange = (event) => {
       setCurVis(event.target.value)
@@ -15,6 +17,18 @@ const Filters = (props) => {
     const changeTrendData = (event) => {
       setTrend(event.target.checked)
     }
+
+    const changeHeatMap = (event) => {
+      setHeatMap(event.target.checked)
+    }
+
+    const handleParameterChange = (event) => {
+      setMapVis(event.target.value)
+    }
+
+    useEffect(() => {      
+      setMapVis('')
+    },[visTabs[curVis][tabValue].label])
 
     return (
         <div>
@@ -54,9 +68,43 @@ const Filters = (props) => {
                         />
                       } 
                       label="See trend data" />
-                    <FormControlLabel control={<Checkbox />} label="Show Data on Map" />
+                    <FormControlLabel 
+                      control={
+                        <Checkbox 
+                          checked={heatMap}
+                          onChange={changeHeatMap}
+                        />
+                      } 
+                      label="Show Data on Map" />
                 </FormGroup>
             </div>
+            {heatMap ? 
+            <div>
+            <TextField
+                style={{marginLeft:"15px", marginTop :"15px", width: '90%'}}
+                id="mapOptions"
+                onChange={handleParameterChange}
+                select
+                InputLabelProps={{ shrink: true }}
+                size="small"
+                label={visTabs[curVis][tabValue].label ? visTabs[curVis][tabValue].label : 'Select'}
+                fullWidth
+                value={mapVis ? mapVis : ''}
+                placeholder={visTabs[curVis][tabValue].label ? visTabs[curVis][tabValue].label : 'Select'}
+                SelectProps={{
+                    native: true,
+                }}                
+                >
+                <option disabled value="">
+                  Select
+                </option>
+                {props.visParameters.map((ele,index) => (
+                  <option key={index} value={ele}>
+                    {ele}
+                  </option>
+                ))}                
+                </TextField>
+            </div> : null}
         </div>
     )
 }
