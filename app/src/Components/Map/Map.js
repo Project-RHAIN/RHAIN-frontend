@@ -14,7 +14,10 @@ var userSelectedCountyValue = null;
 const Map = (props) => {
 
     const {state, setState, county, setCounty} = props.locationObject
+    const {visTabs, curVis, tabValue} = props.visData
+
     console.log("INMAP", state, county)
+    console.log("Tab stuff", curVis ,visTabs[curVis][tabValue])
       
     const curState = state ? state : 'Kansas';
          

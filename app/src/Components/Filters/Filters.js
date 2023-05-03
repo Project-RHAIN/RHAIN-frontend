@@ -3,20 +3,6 @@ import Heading from "../Common/Heading/Heading";
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel'
 import { FormGroup,Checkbox } from "@mui/material";
-  const affordability = [
-    {
-      value: 'A',
-      label: 'A',
-    },
-    {
-      value: 'B',
-      label: 'B',
-    },
-    {
-      value: 'C',
-      label: 'C',
-    }
-  ];
 
 const Filters = (props) => {
 
@@ -57,29 +43,7 @@ const Filters = (props) => {
                     </option>
                 ))}
                 </TextField>
-            </div>
-            {/* <div>
-                <TextField
-                style={{marginLeft:"15px", marginTop :"15px", width: '90%'}}
-                fullWidth
-                id="outlined-select-currency-native"
-                size="small"
-                select
-                label="Affordability"
-                defaultValue="A"
-                placeholder="Affordability"
-                SelectProps={{
-                    native: true,
-                }}
-                // helperText="Please select Affordability"
-                >
-                {affordability.map((option) => (
-                    <option key={option.value} value={option.value}>
-                    {option.label}
-                    </option>
-                ))}
-                </TextField>
-            </div> */}
+            </div>            
             <div>
                 <FormGroup style={{marginLeft: '15px'}}>
                     <FormControlLabel 

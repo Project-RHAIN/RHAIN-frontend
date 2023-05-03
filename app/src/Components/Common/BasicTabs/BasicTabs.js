@@ -43,21 +43,21 @@ const a11yProps = (index) => {
 
 const BasicTabs = (props) => {
   const [value, setValue] = React.useState(0);
-  const {tabData, tabHeading} = props
+  const {tabData, tabHeading, tabValue, setTabValue} = props
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setTabValue(newValue);
   };
 
   useEffect(() => {    
-    setValue(0);
+    setTabValue(0);
   },[tabHeading])
 
   return (
     <Box sx={{ height: '90%', display: 'block' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider', }}>
         <Tabs 
-          value={value} 
+          value={tabValue} 
           onChange={handleChange} 
           aria-label="basic tabs example"
           variant="scrollable"
@@ -69,7 +69,7 @@ const BasicTabs = (props) => {
         </Tabs>
       </Box>
       { tabData.map((tab, index) => (
-        <TabPanel key={index} value={value} index={index}>
+        <TabPanel key={index} value={tabValue} index={index}>
           {tab.component}
         </TabPanel>
       ))}      

@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { Grid, Paper } from "@mui/material";
-import { height } from "@mui/system";
 import Visualization from "../../Components/Visualization/Visualization";
 import Insights from "../../Components/Insights/Insights";
 import RegionalData from "../../Components/RegionalData/RegionalData";
@@ -8,6 +7,11 @@ import Map from "../../Components/Map/Map";
 import Score from "../../Components/Score/Score";
 import MenuBar from '../../Components/MenuBar/MenuBar'
 import './Dashboard.scss'
+import DoctorRatios from "../../Components/Graphs/DoctorRatios";
+import Fitness from "../../Components/Graphs/Fitness"
+import RegulatedIndustries from "../../Components/Graphs/RegulatedIndustries"
+import Crime from "../../Components/Graphs/Crime";
+import Health from "../../Components/Graphs/Health";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import Filters from "../../Components/Filters/Filters";
 
@@ -15,12 +19,15 @@ const Dashboard = (props) => {
     
     const [state, setState] = useState('');
     const [county, setCounty] = useState('');
+    const [trend, setTrend] = useState(false);
+    const [tabValue, setTabValue] = React.useState(0);
 
     const locationObject = {
         state: state,
         setState: setState,
         county: county,
-        setCounty: setCounty
+        setCounty: setCounty,
+        trend: trend
     }
 
     const visualizations = [
@@ -46,16 +53,67 @@ const Dashboard = (props) => {
         }
       ];
 
-    const [curVis, setCurVis] = useState('healthB')
+      const visTabs = {        
+        'healthB': [
+            {
+                label: 'Fitness',
+                component: <Fitness location={locationObject}/>
+            },
+            {
+                label: 'Impact of Regulated Industries',
+                component: <RegulatedIndustries location={locationObject}/>
+            },
+        ],
+        'clinCare': [
+            {
+                label: 'Doctor Ratios',
+                component: <DoctorRatios location={locationObject}/>
+                // component: <>Doctor Ratios - primary care, dentists, mental health providers</>
+            },
+            // {
+            //     label: 'Uninsured',
+            //     component: <>Uninsured - Adults, children, older</>
+            // },
+        ],
+        'socioEco': [
+            {
+                label: 'Crime',
+                component: <Crime location={locationObject}/>
+            },
+            // {
+            //     label: 'Income',
+            //     component: <Income location={location} />
+            // },
+        ],
+        'physEnv': [
+            // {
+            //     label: 'Air & Water Quality',
+            //     component: <>Air & Water Quality</>
+            // },
+            // {
+            //     label: 'Housing & Transit',
+            //     component: <>Housing & Transit - housing problems, traffic, cost burden</>
+            // },
+        ],
+        'lifeQuality': [
+            {
+                label: 'Health',
+                component: <Health location={locationObject}/>
+            },
+        ]
+    }
 
-    const [trend, setTrend] = useState(false);
+    const [curVis, setCurVis] = useState('healthB')    
 
     const visData = {
         curVis,
         setCurVis,
         visualizations,
         trend,
-        setTrend
+        visTabs,
+        setTrend,
+        tabValue,
+        setTabValue
     }
 
     return (
@@ -89,7 +147,7 @@ const Dashboard = (props) => {
             </Grid>
             <Grid item xs={4} className="grid-item">
                 <Paper className="paperContainer">
-                    <Map locationObject={locationObject}/>
+                    <Map locationObject={locationObject} visData={visData}/>
                 </Paper>
             </Grid>
           </Grid>
