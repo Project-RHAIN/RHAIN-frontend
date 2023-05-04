@@ -16,4 +16,23 @@
     .bottom-button {        
         margin: 35px 5px 5px 5px;        
     }
+
+    .below-bottom {
+        margin: 65px 5px 5px 5px;
+    }
+
+    .heat-map-legend {
+        position: absolute;
+        margin-top: -200px;
+        margin-left: 8px;
+    }
+
+    .legend-outer-div {
+        margin-left: 1px;
+    &:hover {
+        cursor: pointer;
+        }
+
+    }
+    
 }

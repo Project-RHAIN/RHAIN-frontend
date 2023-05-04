@@ -1,24 +1,23 @@
 import React , {useEffect, useState} from "react"
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import { scaleQuantile } from 'd3-scale';
-import { schemeBlues } from 'd3-scale-chromatic';
+import { interpolateBlues } from 'd3-scale-chromatic';
+import { Tooltip } from "@mui/material";
 import usCounties from 'us-atlas/counties-10m.json';
 import usStates from 'us-atlas/states-10m.json';
 import stateCords from '../../Data/State_Coordinates.json'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import TroubleshootIcon from '@mui/icons-material/Troubleshoot';
 import './Map.scss'
 
-
-
-var userSelectedStateValue = null;
-var userSelectedCountyValue = null;
 const Map = (props) => {
 
     const {state, setState, county, setCounty} = props.locationObject
     const {heatMap, mapVis} = props.visData
 
     const [countyVals, setCountyVals] = useState([{"County":"Amador","values":22.7}])
+    const [showLegend, setShowLegend] = useState(false)
     
     // console.log("Tab stuff", curVis ,visTabs[curVis][tabValue])
       
@@ -50,6 +49,10 @@ const Map = (props) => {
         setCounty(cnty.properties.name)
     }
 
+    const setLegend = () => {
+        setShowLegend(!showLegend)
+    }
+
     useEffect(() => {
         if(heatMap && mapVis !== '') {
             // console.log("I AM IN MAPPPPPP")
@@ -60,19 +63,23 @@ const Map = (props) => {
                 // console.log(data);
                 setCountyVals(data)
             })
-        }            
+        }     
+        setShowLegend(false)
     }, [mapVis, state])
     // console.log(countyVals)
+
+    const customBlues = [...Array(10)].map((d, i) => interpolateBlues(0.2 + i / 12));
+
     const colorScale = scaleQuantile()
     .domain(countyVals.map(d => d.values))
-    .range(schemeBlues[9]);
+    .range(customBlues);
 
     const quantiles = colorScale.quantiles();
 
     // create the legend
     const legend = quantiles.map((d, i) => (
     <div key={i}>
-        <span style={{ backgroundColor: schemeBlues[9][i], width: "12px", height: "12px", display: "inline-block", marginRight: "4px" }}></span>
+        <span style={{ backgroundColor: customBlues[i], borderRadius: '3px', width: "12px", height: "12px", display: "inline-block", marginRight: "4px" }}></span>
         {d.toFixed(1)} - {quantiles[i + 1] ? quantiles[i + 1].toFixed(1) : "+"}
     </div>
     ));
@@ -80,7 +87,11 @@ const Map = (props) => {
     return (
     <div className="mainMap">        
         <AddCircleIcon className="button" onClick={handleZoomIn}/>                
-        <RemoveCircleIcon className="button bottom-button" onClick={handleZoomOut}/>        
+        <RemoveCircleIcon className="button bottom-button" onClick={handleZoomOut}/>
+        {heatMap && mapVis !== '' ? 
+        <Tooltip title="Toggle legend">
+        <div className="legend-outer-div" onClick={setLegend}>
+        <TroubleshootIcon className="button below-bottom" /></div></Tooltip> : null}
         <ComposableMap 
         projection="geoAlbersUsa"
         // width='800'
@@ -173,7 +184,9 @@ const Map = (props) => {
                 }
             </Geographies> : null}            
             </ZoomableGroup>
-        </ComposableMap>        
+        </ComposableMap>  
+        {showLegend ? 
+        <div className="heat-map-legend">{legend}</div> : null}
         </div>
     )
 }
