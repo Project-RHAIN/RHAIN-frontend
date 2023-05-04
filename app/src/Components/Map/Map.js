@@ -1,5 +1,7 @@
 import React , {useEffect, useState} from "react"
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
+import { scaleQuantile } from 'd3-scale';
+import { schemeBlues } from 'd3-scale-chromatic';
 import usCounties from 'us-atlas/counties-10m.json';
 import usStates from 'us-atlas/states-10m.json';
 import stateCords from '../../Data/State_Coordinates.json'
@@ -15,6 +17,8 @@ const Map = (props) => {
 
     const {state, setState, county, setCounty} = props.locationObject
     const {heatMap, mapVis} = props.visData
+
+    const [countyVals, setCountyVals] = useState([{"County":"Amador","values":22.7}])
     
     // console.log("Tab stuff", curVis ,visTabs[curVis][tabValue])
       
@@ -48,10 +52,30 @@ const Map = (props) => {
 
     useEffect(() => {
         if(heatMap && mapVis !== '') {
-            console.log("I AM IN MAPPPPPP")
-            console.log("INMAP", state, mapVis, heatMap)
+            // console.log("I AM IN MAPPPPPP")
+            // console.log("INMAP", state, mapVis, heatMap)
+            fetch(`http://localhost:8000/map-vis?state_name=${state}&map_vis=${mapVis}`)
+            .then(response => response.json())
+            .then(data => {
+                // console.log(data);
+                setCountyVals(data)
+            })
         }            
     }, [mapVis, state])
+    // console.log(countyVals)
+    const colorScale = scaleQuantile()
+    .domain(countyVals.map(d => d.values))
+    .range(schemeBlues[9]);
+
+    const quantiles = colorScale.quantiles();
+
+    // create the legend
+    const legend = quantiles.map((d, i) => (
+    <div key={i}>
+        <span style={{ backgroundColor: schemeBlues[9][i], width: "12px", height: "12px", display: "inline-block", marginRight: "4px" }}></span>
+        {d.toFixed(1)} - {quantiles[i + 1] ? quantiles[i + 1].toFixed(1) : "+"}
+    </div>
+    ));
     
     return (
     <div className="mainMap">        
@@ -96,7 +120,33 @@ const Map = (props) => {
                 })
                 .map(geo => {                    
                     // console.log(geo)
-                    // const cur = data.find(s => s.id === geo.id);
+                    // const cur = data.find(s => s.id === geo.id);                    
+                    if(heatMap && mapVis !== '') {
+                        const cur = countyVals.find(s => s.County === geo.properties.name);
+                        return (
+                            <Geography
+                                key={geo.rsmKey}
+                                geography={geo}
+                                onClick={() => clickCounty(geo)}
+                                stroke="#000000"
+                                style={{
+                                    default: {
+                                    fill: cur ? colorScale(cur.values) : "#a3c7ff",
+                                    outline: 'none',
+                                    stroke: geo.properties.name === county ? "#FF0000" : "#000000",
+                                    },
+                                    hover: {
+                                    fill: "#F53",
+                                    outline: 'none'
+                                    },
+                                    pressed: {
+                                    fill: "#015ff",
+                                    outline: 'none',                                    
+                                    },
+                                }}
+                                />
+                        )
+                    }
                     return (
                     <Geography
                         key={geo.rsmKey}
@@ -121,9 +171,9 @@ const Map = (props) => {
                     );
                 })
                 }
-            </Geographies> : null}
+            </Geographies> : null}            
             </ZoomableGroup>
-        </ComposableMap>
+        </ComposableMap>        
         </div>
     )
 }

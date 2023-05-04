@@ -6,7 +6,7 @@ const MultiLineGraph = (props) => {
     const {trendData, ylabel} = props;
 
     const yParamNames = Object.keys(trendData[0]).filter(key => key !== "Year");
-    console.log("IN HERE", trendData)
+    // console.log("IN HERE", trendData)
     // Define a color scale for the lines
     const colorScale = ["#ff0000", "#003ffc", "#00db00", "#deb607", "#b805ff"];
 
