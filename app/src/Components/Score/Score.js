@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Modal, Typography } from "@mui/material";
+import { Modal, Typography, Tooltip } from "@mui/material";
 import './Score.scss'
 
 const marks = [
@@ -138,11 +138,12 @@ const Score = (props) => {
         <Heading style={{display: 'flex'}}>
           Objective Score 
           {sliderValueObjective <= 10 &&  sliderValueObjective > 0 ?
+          <Tooltip title="Show more information on the Objective score">
           <InfoOutlinedIcon
             onClick={handleOpen}
             className="obj-score-icon"
             // style={{ fontSize: '18px', cursor: 'pointer', marginLeft: 'auto' }}
-          /> : null }
+          /></Tooltip> : null }
         </Heading>
           <Box
                   className='score-box'
@@ -169,6 +170,7 @@ const Score = (props) => {
           >
 
             <Box className="modal-box">
+              <div>
               {featureData.length > 0 ?
               <>
               <Heading>Additional Objective Score Parameters</Heading>
@@ -199,6 +201,7 @@ const Score = (props) => {
                   })                
                 : <Heading>No data to display</Heading>
               }
+              </div>
             </Box>
           </Modal>
       </div>
