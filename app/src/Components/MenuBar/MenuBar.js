@@ -9,6 +9,7 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
+import logo from '../../Images/logo_white.png'
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
@@ -40,7 +41,8 @@ const MenuBar = () => {
     <AppBar position="static" elevation={0}>
       <Container maxWidth="xl">
         <Toolbar disableGutters className='mainToolbar'>
-          <HealthAndSafetyIcon sx={{ display: { md: 'flex' }, mr: 1 }} />
+          {/* <HealthAndSafetyIcon sx={{ display: { md: 'flex' }, mr: 1 }} /> */}
+          <img src={logo} alt="Logo" height="30px" style={{marginRight: '8px'}} />
           <Typography
             variant="h6"
             noWrap
