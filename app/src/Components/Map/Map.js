@@ -17,7 +17,7 @@ const Map = (props) => {
     const {heatMap, mapVis} = props.visData
 
     const [countyVals, setCountyVals] = useState([{"County":"Amador","values":22.7}])
-    const [showLegend, setShowLegend] = useState(false)
+    const [showLegend, setShowLegend] = useState(true)
     
     // console.log("Tab stuff", curVis ,visTabs[curVis][tabValue])
       
@@ -64,7 +64,7 @@ const Map = (props) => {
                 setCountyVals(data)
             })
         }     
-        setShowLegend(false)
+        // setShowLegend(false)
     }, [mapVis, state])
     // console.log(countyVals)
 
@@ -185,7 +185,7 @@ const Map = (props) => {
             </Geographies> : null}            
             </ZoomableGroup>
         </ComposableMap>  
-        {showLegend ? 
+        {showLegend && heatMap && mapVis !== '' ? 
         <div className="heat-map-legend">{legend}</div> : null}
         </div>
     )
