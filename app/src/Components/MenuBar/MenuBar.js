@@ -13,10 +13,9 @@ import logo from '../../Images/logo_white.png'
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 
-const pages = ['Data', 'User', 'About'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['Data', 'About'];
+const settings = ['Profile', 'Dashboard', 'Logout'];
 
 const MenuBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -109,10 +108,10 @@ const MenuBar = () => {
             ))}
           </Box>
 
-          {/* <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+          <Box sx={{ flexGrow: 0, marginLeft: '8px' }}>
+            <Tooltip title="Open menu">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Utkarsh Chhapekar" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -137,7 +136,7 @@ const MenuBar = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box> */}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
