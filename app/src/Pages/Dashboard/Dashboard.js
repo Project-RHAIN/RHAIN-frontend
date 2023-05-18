@@ -14,6 +14,7 @@ import Crime from "../../Components/Graphs/Crime";
 import Health from "../../Components/Graphs/Health";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import Filters from "../../Components/Filters/Filters";
+import Comparison from "../../Components/Comparison/Comparison";
 
 const Dashboard = (props) => {
     
@@ -143,6 +144,11 @@ const Dashboard = (props) => {
                     <Grid item xs={12} className="grid-item-sub" style={{paddingTop: '6px'}}>
                         <Paper className="paperContainer">
                             <Score type="perception" locationObject={locationObject}/>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12} className="grid-item-sub" style={{paddingTop: '6px'}}>
+                        <Paper className="paperContainer">
+                            <Comparison type="comparison" locationObject={locationObject}/>
                         </Paper>
                     </Grid>
                 </Grid>                
