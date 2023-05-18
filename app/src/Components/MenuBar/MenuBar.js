@@ -39,7 +39,7 @@ const MenuBar = () => {
 
   return (
     <AppBar position="static" elevation={0}>
-      <Container maxWidth="xl">
+      <Container style={{maxWidth: '100%'}}>
         <Toolbar disableGutters className='mainToolbar'>
           {/* <HealthAndSafetyIcon sx={{ display: { md: 'flex' }, mr: 1 }} /> */}
           <img src={logo} alt="Logo" height="30px" style={{marginRight: '8px'}} />

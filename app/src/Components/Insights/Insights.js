@@ -41,9 +41,13 @@ const Insights = (props) => {
                 {articles.length > 0 ?                              
                     articles.map((article, index) => {
 
+                        try {
+
                         return (
                             <NewsCard key={index} title={article.title} snippet={article.snippet} link={article.link} imglink={article.pagemap.cse_image ? article.pagemap.cse_image[0].src : null}/>
-                        )
+                        ) } catch(e) {
+                            return null;
+                        }
                     })                                      
             : <p style={{marginLeft: '10px'}}>Sorry, no updates to show!</p>
              }                
