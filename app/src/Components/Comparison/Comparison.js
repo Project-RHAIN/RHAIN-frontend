@@ -141,6 +141,7 @@ const Comparison = (props) => {
   const handleClose = () => setModalOpen(false);
 
   useEffect(() => {
+    // console.log("In useEffect1")
     fetch(
       `http://localhost:8000/health-score?state_name=${state1}&county_name=${county1}`
     )
@@ -158,9 +159,10 @@ const Comparison = (props) => {
         setFeatureData1(data);
       })
       .catch((error) => console.error(error));
-  }, [county1, state2, county2]);
+  }, [county1, state1]);
 
   useEffect(() => {
+    // console.log("In useEffect2")
     // Update sliderValueObjective2 when state2 changes
     fetch(
       `http://localhost:8000/health-score?state_name=${state2}&county_name=${county2}`
@@ -179,7 +181,7 @@ const Comparison = (props) => {
         setFeatureData2(data);
       })
       .catch((error) => console.error(error));
-  }, [state1, county2]);
+  }, [state2, county2]);
 
   if (type === "comparison") {
     return (

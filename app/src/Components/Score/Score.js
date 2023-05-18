@@ -103,6 +103,7 @@ const Score = (props) => {
   const handleClose = () => setModalOpen(false);
 
   useEffect(() => {
+    // console.log("In score useEffect")
     fetch(`http://localhost:8000/health-score?state_name=${state}&county_name=${county}`)
     .then(response => response.json())
     .then(data => {        
@@ -130,7 +131,7 @@ const Score = (props) => {
     })
     .catch(error => console.error(error));
 
-  },[county])
+  },[county, state])
 
   if(type === "objective") {  
     return (
