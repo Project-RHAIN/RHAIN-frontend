@@ -146,16 +146,7 @@ const Comparison = (props) => {
   useEffect(() => {
     // console.log("In useEffect1")
     fetch(
-      `http://localhost:8000/health-score?state_name=${state1}&county_name=${county1}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setSliderValueObjective1((data["Health Score"] / 10).toFixed(2));
-      })
-      .catch((error) => console.error(error));
-
-    fetch(
-      `http://localhost:8000/feature-score?state_name=${state1}&county_name=${county1}`
+      `http://localhost:8000/compare-score?state_name=${state1}&county_name=${county1}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -166,18 +157,8 @@ const Comparison = (props) => {
 
   useEffect(() => {
     // console.log("In useEffect2")
-    // Update sliderValueObjective2 when state2 changes
     fetch(
-      `http://localhost:8000/health-score?state_name=${state2}&county_name=${county2}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setSliderValueObjective2((data["Health Score"] / 10).toFixed(2));
-      })
-      .catch((error) => console.error(error));
-
-    fetch(
-      `http://localhost:8000/feature-score?state_name=${state2}&county_name=${county2}`
+      `http://localhost:8000/compare-score?state_name=${state2}&county_name=${county2}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -191,7 +172,7 @@ const Comparison = (props) => {
       <div>
         <Heading style={{ display: "flex" }}>
           Compare Counties
-          <Tooltip title="Show more information on the Objective score">
+          <Tooltip title="Click to compare counties">
             <InfoOutlinedIcon onClick={handleOpen} className="obj-score-icon" />
           </Tooltip>
         </Heading>
