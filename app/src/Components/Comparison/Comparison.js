@@ -108,8 +108,11 @@ const CustomSlider = styled(Slider)(({ theme, value }) => ({
 }));
 
 const Comparison = (props) => {
-  const [state1, setState1] = useState("");
-  const [county1, setCounty1] = useState("");
+
+  const {state, county} = props.locationObject;
+
+  const [state1, setState1] = useState(state);
+  const [county1, setCounty1] = useState(county);
   const [state2, setState2] = useState("");
   const [county2, setCounty2] = useState("");
 

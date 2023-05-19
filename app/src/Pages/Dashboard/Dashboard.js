@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Grid, Paper } from "@mui/material";
+import { Button, Grid, Paper } from "@mui/material";
 import Visualization from "../../Components/Visualization/Visualization";
 import Insights from "../../Components/Insights/Insights";
 import RegionalData from "../../Components/RegionalData/RegionalData";
@@ -150,6 +150,7 @@ const Dashboard = (props) => {
                         <Paper className="paperContainer">
                             <Comparison type="comparison" locationObject={locationObject}/>
                         </Paper>
+                        {/* <Button variant="outlined">Compare Counties</Button> */}
                     </Grid>
                 </Grid>                
             </Grid>

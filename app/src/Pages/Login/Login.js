@@ -5,7 +5,32 @@ import { Grid, Button } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+  
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 3 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  }
 
 const Login = () => {
 
@@ -14,6 +39,20 @@ const Login = () => {
     let path = `/home`; 
     navigate(path);
     }
+
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    function a11yProps(index) {
+        return {
+          id: `simple-tab-${index}`,
+          'aria-controls': `simple-tabpanel-${index}`,
+        };
+      }
+    
     // const [password, setPassword]
 
     return (
@@ -44,37 +83,22 @@ const Login = () => {
 
             <Grid item sm={4} className='column2'>
                 <div className='login-section'>
-                    {/* <HealthAndSafetyIcon className='logo' /> */}                    
-                    <img src={logo} alt="Logo" height="70px"/>
-                    <h1>Sign in here!</h1>
-                    <TextField
-                        label="Email"
-                        type="email"
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                    />
-                    <TextField
-                        label="Password"
-                        type="password"
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                    />   
-                    <Button variant="contained" disableElevation className='login-button' onClick={routeChange} >
-                    <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
-                    <GoogleLogin onSuccess={credentialResponse => {
-                        console.log(credentialResponse );
-                        navigate('/home');}}
-                    onError={() => {
-                        console.log('Login Failed');
-                    }}
-                    />
-                    </GoogleOAuthProvider>
-                    </Button>
-                </div>        
+                <img src={logo} alt="Logo" height="70px"/>
+                <Box sx={{ width: '100%' }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className='centeredTabs'>
+                    <Tab label="Login" {...a11yProps(0)} />
+                    <Tab label="Register" {...a11yProps(1)} />
+                    </Tabs>
+                </Box>
+                <TabPanel value={value} index={0}>
+                <LoginForm navigate={navigate} routeChange={routeChange}/>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                <RegisterForm navigate={navigate} routeChange={routeChange}/>
+                </TabPanel>
+                </Box>
+                </div>
             </Grid>
         </Grid>
         </div>    

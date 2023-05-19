@@ -60,4 +60,10 @@
           margin-top: 20px;
         }
     }
+
+    .centeredTabs {
+      .MuiTabs-flexContainer {
+        justify-content: center;
+      }
+    }
 }
