@@ -69,16 +69,16 @@ const Map = (props) => {
     // console.log(countyVals)
 
     const customBlues = [...Array(10)].map((d, i) => interpolateBlues(0.2 + i / 12));
-
+    console.log("COUNTYVALS",countyVals)
     const colorScale = scaleQuantile()
     .domain(countyVals.map(d => d.values))
-    .range(customBlues);
-
+    .range(customBlues);    
     const quantiles = colorScale.quantiles();
-
+    // console.log("QUANTILES", quantiles)
     // create the legend
-    const legend = quantiles.map((d, i) => (
+    const legend = quantiles.map((d, i) => (    
     <div key={i}>
+        {/* {console.log("IN MAP COMPONENT",d)} */}
         <span style={{ backgroundColor: customBlues[i], borderRadius: '3px', width: "12px", height: "12px", display: "inline-block", marginRight: "4px" }}></span>
         {d.toFixed(1)} - {quantiles[i + 1] ? quantiles[i + 1].toFixed(1) : "+"}
     </div>

@@ -111,6 +111,8 @@ const Comparison = (props) => {
 
   const {state, county} = props.locationObject;
 
+  // console.log("THIS IS IN COMPARISON", state, county)
+
   const [state1, setState1] = useState(state);
   const [county1, setCounty1] = useState(county);
   const [state2, setState2] = useState("");
