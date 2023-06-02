@@ -24,8 +24,9 @@ const MultiLineGraph = (props) => {
     <VictoryChart 
         colorScale={colorScale}
         theme={VictoryTheme.material}
-        width={900}
+        width={700}
         height={400}
+        padding={{ left: 50, top: 50, bottom: 40, right: 20}}
         key={JSON.stringify(trendData)}
     >
         <VictoryLegend x={50} y={0}
@@ -36,7 +37,7 @@ const MultiLineGraph = (props) => {
             style={{ border: { stroke: "black" }, title: { fontSize: 20 } }}                
             data={datasets.map(d => ({name: d.label, symbol: {fill: d.color}}))}
         />
-        <VictoryAxis dependentAxis label={ylabel} axisLabelComponent={<VictoryLabel dy={-25} style={{fontSize: 20}} />}/>
+        <VictoryAxis dependentAxis label={ylabel} axisLabelComponent={<VictoryLabel dy={-40} style={{fontSize: 20}} />}/>
         <VictoryAxis
         tickValues={trendData.map(d => d.Year)}
         tickFormat={x => `${x}`}

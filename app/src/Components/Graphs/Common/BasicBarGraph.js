@@ -11,8 +11,9 @@ const BasicBarGraph = (props) => {
         <VictoryChart            
             theme={VictoryTheme.material}
             domainPadding={70}
-            width={900}
+            width={700}
             height={400}
+            padding={{ left: 70, top: 30, bottom: 40, right: 20}}
             key={JSON.stringify(graphData)}
             >
             <VictoryAxis
