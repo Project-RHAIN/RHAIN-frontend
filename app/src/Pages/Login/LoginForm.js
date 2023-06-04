@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
+import './Login.scss'
 import { API_KEY, BASE_ID, TABLE_NAME } from './config';
 import md5 from 'md5';
 
@@ -79,19 +80,26 @@ const LoginForm = (props) => {
                 required
                 fullWidth
             />   
-            <Button onClick={handleLogin} variant='contained'>Login</Button><br/>
-            {errorMessage && <p>{errorMessage}</p>}
-            <Button variant="contained" disableElevation className='login-button' onClick={routeChange} >
-            <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
-            <GoogleLogin onSuccess={credentialResponse => {
-                console.log(credentialResponse );
-                navigate('/home');}}
-            onError={() => {
-                console.log('Login Failed');
-            }}
-            />
-            </GoogleOAuthProvider>
-            </Button>
+            <div className="login-options">
+                <Button variant="contained" disableElevation className='login-button' onClick={handleLogin} >
+                    Login
+                </Button>
+                <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
+                <GoogleLogin 
+                    onSuccess={credentialResponse => {
+                        console.log(credentialResponse );
+                        
+                        navigate('/home');}}
+                    onError={() => {
+                        console.log('Login Failed');
+                    }}
+                    // type="icon"
+                    // shape="circle"
+                    theme="filled_black"
+                />
+                </GoogleOAuthProvider>            
+            </div>
+            {errorMessage && <p>{errorMessage}</p>}            
         </>
     )
 }
