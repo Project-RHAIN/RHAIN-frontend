@@ -49,7 +49,7 @@ const Insights = (props) => {
                             return null;
                         }
                     })                                      
-            : <p style={{marginLeft: '10px'}}>Sorry, no updates to show!</p>
+            : <p style={{marginLeft: '10px'}}>Select a region to get the latest healthcare news!</p>
              }                
             </div>
         </React.Fragment>
