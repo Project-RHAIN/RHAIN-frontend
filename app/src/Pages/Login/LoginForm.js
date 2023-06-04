@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
 import { API_KEY, BASE_ID, TABLE_NAME } from './config';
+import md5 from 'md5';
 
 const LoginForm = (props) => {
 
@@ -35,9 +36,10 @@ const LoginForm = (props) => {
             'Content-Type': 'application/json',
         };
 
+        const hashedPassword = md5(password);
 
         try {
-          const requestURL = url + `?filterByFormula=AND(Email%3D"${email}",Password%3D"${password}")`; 
+          const requestURL = url + `?filterByFormula=AND(Email%3D"${email}",Password%3D"${hashedPassword}")`; 
           const response = await fetch(requestURL, {
             method: 'GET',
             headers: headers,

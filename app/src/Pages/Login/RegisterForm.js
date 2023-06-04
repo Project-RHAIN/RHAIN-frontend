@@ -6,7 +6,8 @@ import { Button } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
 //import { useNavigate } from 'react-router-dom';
-// import bcrypt from 'bcrypt';
+import md5 from 'md5';
+
 
 
 const RegisterForm = (props) => {
@@ -50,13 +51,15 @@ const RegisterForm = (props) => {
             setErrorMessage('Password should be at least 8 characters long and contain at least one letter and one digit.');
             return;
         }
+
+        const hashedPassword = md5(password);
        
         const userData = {
           fields: {
             first_name: firstname,
             last_name: lastname,
             email: email,
-            password: password,
+            password: hashedPassword,
           },
         };
 
@@ -67,7 +70,7 @@ const RegisterForm = (props) => {
             'Content-Type': 'application/json',
         };
 
-        // Make a POST request to your Airtable endpoint
+
         try {
           const requestURL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}?filterByFormula={email}='${email}'` 
           const response = await fetch(requestURL, {
