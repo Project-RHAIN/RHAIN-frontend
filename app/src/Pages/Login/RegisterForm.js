@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import './Login.scss'
 import { API_KEY, BASE_ID, TABLE_NAME } from './config';
-import logo from '../../Images/logo_white.png'
-import { Grid, Button } from "@mui/material";
+//import logo from '../../Images/logo_white.png'
+import { Button } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 // import bcrypt from 'bcrypt';
 
 
@@ -26,6 +26,13 @@ const RegisterForm = (props) => {
     };
 
 
+    const validatePassword = (password) => {
+         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+         return passwordRegex.test(password);
+    }
+
+
+
     const handleRegister = async (e) => {
         e.preventDefault();
 
@@ -39,6 +46,10 @@ const RegisterForm = (props) => {
             return;
         }
 
+        if(!validatePassword(password)) {
+            setErrorMessage('Password should be at least 8 characters long and contain at least one letter and one digit.');
+            return;
+        }
        
         const userData = {
           fields: {
@@ -132,7 +143,7 @@ const RegisterForm = (props) => {
                 required
                 fullWidth
             />   
-            <Button onClick={handleRegister} variant='contained'>Register</Button>
+            <Button onClick={handleRegister} variant='contained'>Register</Button><br/>
             {errorMessage && <p>{errorMessage}</p>}
             <Button variant="contained" disableElevation className='login-button' onClick={routeChange} >
             <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
