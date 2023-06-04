@@ -26,6 +26,7 @@ const LoginForm = (props) => {
                 required
                 fullWidth
             />   
+            <Button onClick={LoginForm} variant='contained'>Login</Button><br/>
             <Button variant="contained" disableElevation className='login-button' onClick={routeChange} >
             <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
             <GoogleLogin onSuccess={credentialResponse => {
