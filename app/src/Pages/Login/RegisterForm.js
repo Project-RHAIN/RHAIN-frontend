@@ -6,7 +6,7 @@ import { Grid, Button } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
-
+// import bcrypt from 'bcrypt';
 
 
 const RegisterForm = (props) => {
@@ -28,6 +28,11 @@ const RegisterForm = (props) => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+
+        if (!firstname || !lastname || !password) {
+            setErrorMessage('Please fill in all the required fields.');
+            return;
+        }
         
         if (!validateEmail(email)) {
             setErrorMessage('Please enter a valid email address.');
