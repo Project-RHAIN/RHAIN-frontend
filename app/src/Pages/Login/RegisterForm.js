@@ -1,33 +1,56 @@
 import React, {useState} from 'react';
 import './Login.scss'
-import logo from '../../Images/logo_white.png'
-import { Grid, Button } from "@mui/material";
+import { API_KEY, BASE_ID, TABLE_NAME } from './config';
+//import logo from '../../Images/logo_white.png'
+import { Button } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
-import { useNavigate } from 'react-router-dom';
-
+//import { useNavigate } from 'react-router-dom';
+// import bcrypt from 'bcrypt';
 
 
 const RegisterForm = (props) => {
 
     const {navigate, routeChange} = props;
 
-    // const bcrypt = require('bcrypt');
     const [firstname, setFirstName] = useState('');
     const [lastname, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    
-    // const [password, setPassword]
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+
+    const validatePassword = (password) => {
+         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+         return passwordRegex.test(password);
+    }
+
 
 
     const handleRegister = async (e) => {
         e.preventDefault();
 
-        // const hashedPassword = await bcrypt.hash(password, 10);
-    // Create an object with the user's information
+        if (!firstname || !lastname || !password) {
+            setErrorMessage('Please fill in all the required fields.');
+            return;
+        }
+        
+        if (!validateEmail(email)) {
+            setErrorMessage('Please enter a valid email address.');
+            return;
+        }
+
+        if(!validatePassword(password)) {
+            setErrorMessage('Password should be at least 8 characters long and contain at least one letter and one digit.');
+            return;
+        }
+       
         const userData = {
           fields: {
             first_name: firstname,
@@ -37,34 +60,38 @@ const RegisterForm = (props) => {
           },
         };
 
-        const url = 'https://api.airtable.com/v0/appZKbOG56UrV0Dvp/Users';
+
+        const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
         const headers = {
-            'Authorization': 'Bearer patINoqscdJqGN99D.da9df089db04370b459a32adefdeb497b54c2c26902a6ae906c4ce71319ad629',
+            'Authorization': `Bearer ${API_KEY}`,
             'Content-Type': 'application/json',
         };
 
-        // const searchParams = new URLSearchParams({
-        //         filterByFormula: `AND({Email} = '${email}', {Name} = '${name}')`,
-        // });
-        // const searchUrl = `${url}?${searchParams}`;
-
         // Make a POST request to your Airtable endpoint
         try {
-          const response = await fetch(url, {
-            method: 'POST',
+          const requestURL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}?filterByFormula={email}='${email}'` 
+          const response = await fetch(requestURL, {
+            method: 'GET',
             headers: headers,
-            body: JSON.stringify(userData),
           });
-
-          if (response.ok) {
-            // Registration successful
-            console.log('Registration successful!');
-            navigate('/home');
-            // You can redirect to a success page or perform any other action here
-          } else {
-            // Registration failed
-            console.log('Registration failed.');
-            // You can display an error message or perform any other action here
+          const data = await response.json();
+          if (data.records.length > 0) {
+                setErrorMessage('User already exists. Please login instead.');
+          }
+          else{
+               const resp = await fetch(url, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(userData),
+               });
+              if (resp.ok) {
+                // Registration successful
+                console.log('Registration successful!');
+                navigate('/home');
+              } else {
+                // Registration failed
+                setErrorMessage('Registration failed.');
+              }
           }
         } catch (error) {
           console.error('Error:', error);
@@ -117,6 +144,8 @@ const RegisterForm = (props) => {
                 fullWidth
             />   
             {/* <Button onClick={handleRegister} variant='contained'>Register</Button>
+            <Button onClick={handleRegister} variant='contained'>Register</Button><br/>
+            {errorMessage && <p>{errorMessage}</p>}
             <Button variant="contained" disableElevation className='login-button' onClick={routeChange} >
             <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
             <GoogleLogin onSuccess={credentialResponse => {
@@ -129,7 +158,7 @@ const RegisterForm = (props) => {
             </GoogleOAuthProvider>
             </Button> */}
             <div className="login-options">
-                <Button variant="contained" disableElevation className='login-button' onClick={routeChange} >
+                <Button variant="contained" disableElevation className='login-button' onClick={handleRegister} >
                     Register
                 </Button>
                 <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
@@ -147,6 +176,7 @@ const RegisterForm = (props) => {
                 />
                 </GoogleOAuthProvider>            
             </div>
+            {errorMessage && <p>{errorMessage}</p>}
         </>            
     );
     }
