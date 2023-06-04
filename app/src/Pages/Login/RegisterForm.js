@@ -116,7 +116,7 @@ const RegisterForm = (props) => {
                 required
                 fullWidth
             />   
-            <Button onClick={handleRegister} variant='contained'>Register</Button>
+            {/* <Button onClick={handleRegister} variant='contained'>Register</Button>
             <Button variant="contained" disableElevation className='login-button' onClick={routeChange} >
             <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
             <GoogleLogin onSuccess={credentialResponse => {
@@ -127,7 +127,26 @@ const RegisterForm = (props) => {
             }}
             />
             </GoogleOAuthProvider>
-            </Button>
+            </Button> */}
+            <div className="login-options">
+                <Button variant="contained" disableElevation className='login-button' onClick={routeChange} >
+                    Register
+                </Button>
+                <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
+                <GoogleLogin 
+                    onSuccess={credentialResponse => {
+                        console.log(credentialResponse );
+                        navigate('/home');}}
+                    onError={() => {
+                        console.log('Registration Failed');
+                    }}
+                    // type="icon"
+                    // shape="circle"
+                    text="signup_with"
+                    theme="filled_black"
+                />
+                </GoogleOAuthProvider>            
+            </div>
         </>            
     );
     }
