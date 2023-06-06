@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import './Login.scss'
 import logo from '../../Images/logo_white.png'
-import { Grid, Button } from "@mui/material";
+import { Grid, Button, Alert } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Tabs from '@mui/material/Tabs';
@@ -36,9 +36,13 @@ const Login = () => {
 
     let navigate = useNavigate(); 
     const routeChange = () =>{ 
-    let path = `/home`; 
-    navigate(path);
+      let path = `/home`; 
+      navigate(path);
     }
+
+    const location = useLocation();
+    const message = location.state?.message;
+    console.log("MESSAGE", message)
 
     const [value, setValue] = React.useState(0);
 
@@ -67,7 +71,7 @@ const Login = () => {
                     onError={() => {
                         console.log('Login Failed');
                     }}
-                />; */}                                
+                />; */}                                                
                 <h1>Regional Healthcare Analysis and Improvement Network </h1>
                 <p>Our goal is to leverage the power of big data methodologies to provide insights into the issues 
                 surrounding healthcare delivery on a region-by-region basis. 
@@ -83,6 +87,7 @@ const Login = () => {
 
             <Grid item sm={4} className='column2'>
                 <div className='login-section'>
+                {message && <Alert style={{marginBottom: '10px'}} severity="error" variant="filled">{message}</Alert>}
                 <img src={logo} alt="Logo" height="70px"/>
                 <Box sx={{ width: '100%' }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Slider from "@mui/material/Slider";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { Modal, Typography, Tooltip } from "@mui/material";
 import "./Comparison.scss";
 import TextField from "@mui/material/TextField";
@@ -175,7 +176,7 @@ const Comparison = (props) => {
         <Heading style={{ display: "flex" }}>
           Compare Counties
           <Tooltip title="Click to compare counties">
-            <InfoOutlinedIcon onClick={handleOpen} className="obj-score-icon" />
+            <CompareArrowsOutlinedIcon style={{width: '30px', height: '30px'}} onClick={handleOpen} className="obj-score-icon" />
           </Tooltip>
         </Heading>
         <Modal

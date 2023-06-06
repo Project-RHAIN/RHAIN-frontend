@@ -3,6 +3,7 @@ import { TextField, Button } from "@mui/material";
 import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
 import './Login.scss'
 import { API_KEY, BASE_ID, TABLE_NAME } from './config';
+import { generateToken} from "../../Utils/handleToken";
 import md5 from 'md5';
 
 const LoginForm = (props) => {
@@ -46,8 +47,16 @@ const LoginForm = (props) => {
             headers: headers,
           });
           const data = await response.json();
+          console.log("LOGIN DATA", data)
           if (data.records.length > 0) {
              console.log('Login successful!');
+             const validationObject = {
+                email: email,
+                password: hashedPassword
+             }
+             const token = generateToken(validationObject)
+             localStorage.setItem('token', token);
+            //  console.log('After Token generation!');
              navigate('/home');
           } else {
             setErrorMessage('Invalid email or password');

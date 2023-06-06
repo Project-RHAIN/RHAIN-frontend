@@ -4,6 +4,7 @@ import { API_KEY, BASE_ID, TABLE_NAME } from './config';
 //import logo from '../../Images/logo_white.png'
 import { Button } from "@mui/material";
 import TextField from '@mui/material/TextField';
+import { generateToken} from "../../Utils/handleToken";
 import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
 //import { useNavigate } from 'react-router-dom';
 import md5 from 'md5';
@@ -48,7 +49,7 @@ const RegisterForm = (props) => {
         }
 
         if(!validatePassword(password)) {
-            setErrorMessage('Password should be at least 8 characters long and contain at least one letter and one digit.');
+            setErrorMessage('Password should be at least 8 characters long and contain at least one letter and one digit. No special characters');
             return;
         }
 
@@ -89,6 +90,12 @@ const RegisterForm = (props) => {
                });
               if (resp.ok) {
                 // Registration successful
+                const validationObject = {
+                    email: email,
+                    password: hashedPassword
+                 }
+                 const token = generateToken(validationObject)
+                 localStorage.setItem('token', token);
                 console.log('Registration successful!');
                 navigate('/home');
               } else {
