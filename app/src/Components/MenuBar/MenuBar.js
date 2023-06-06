@@ -18,9 +18,11 @@ import MenuItem from '@mui/material/MenuItem';
 const pages = ['Data', 'About'];
 const settings = ['Profile', 'Dashboard', 'Logout'];
 
-const MenuBar = () => {
+const MenuBar = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const user = JSON.parse(localStorage.getItem('user'));
 
   let navigate = useNavigate();
 
@@ -40,10 +42,11 @@ const MenuBar = () => {
     setAnchorElUser(null);
     if(setting === 'Logout') {
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
       navigate('/');
     }
   };
-
+  // console.log("IMAGE", user.picture)
   return (
     <AppBar position="static" elevation={0}>
       <Container style={{maxWidth: '100%'}}>
@@ -117,9 +120,10 @@ const MenuBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0, marginLeft: '8px' }}>
-            <Tooltip title="Open menu">
+          <Typography className='menuName'>{user.first_name}</Typography>
+            <Tooltip title="Open menu">            
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Utkarsh Chhapekar" />
+                <Avatar alt={user.first_name} imgProps={{ referrerPolicy: "no-referrer" }} src={user.picture}/>
               </IconButton>
             </Tooltip>
             <Menu

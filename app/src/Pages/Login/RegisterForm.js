@@ -94,8 +94,15 @@ const RegisterForm = (props) => {
                     email: email,
                     password: hashedPassword
                  }
+                 const userObject = {
+                    email: email,
+                    first_name: firstname,
+                    last_name: lastname,
+                    picture: ''
+                 }
                  const token = generateToken(validationObject)
                  localStorage.setItem('token', token);
+                 localStorage.setItem('user', JSON.stringify(userObject));
                 console.log('Registration successful!');
                 navigate('/home');
               } else {
@@ -189,22 +196,26 @@ const RegisterForm = (props) => {
                         .then(response => response.json())
                         .then(data => {
                         // Assuming the backend sends email, firstName, and lastName in the response
-                        const { email, name, picture } = data;
+                        const { email, first_name, last_name, picture } = data;
 
                         // Store the email, firstName, and lastName in variables or state on the frontend
                         const storedEmail = email;
-                        const storedName = name;
+                        const storedFirstName = first_name;
+                        const storedLastName = last_name;
                         const storedPicture = picture;
 
                         // Continue with other actions or UI updates
                         const validationObject = {
                             email: storedEmail,
-                            name: storedName,
+                            first_name: storedFirstName,
+                            last_name: storedLastName,
                             picture: storedPicture
                          }
                          console.log("GOOGLE VALIDATED DETAILS", validationObject)
                          const token = generateToken(validationObject)
                          localStorage.setItem('token', token);
+                         localStorage.setItem('user', JSON.stringify(validationObject));
+
                          navigate('/home');
                         })
                         .catch(error => {

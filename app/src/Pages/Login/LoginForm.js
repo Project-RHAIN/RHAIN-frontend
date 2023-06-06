@@ -8,7 +8,7 @@ import md5 from 'md5';
 
 const LoginForm = (props) => {
 
-    const {navigate, routeChange} = props;
+    const {navigate, routeChange} = props;    
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -46,16 +46,28 @@ const LoginForm = (props) => {
             method: 'GET',
             headers: headers,
           });
-          const data = await response.json();
-          console.log("LOGIN DATA", data)
+          const data = await response.json();          
           if (data.records.length > 0) {
              console.log('Login successful!');
              const validationObject = {
                 email: email,
                 password: hashedPassword
              }
+
+             console.log("LOGIN DATA", data.records[0].fields)
+
+             const udata = data.records[0].fields
+
+             const userObject = {
+                email: email,
+                first_name: udata.first_name,
+                last_name: udata.last_name,
+                picture: udata.profile_picture
+             }
+             
              const token = generateToken(validationObject)
              localStorage.setItem('token', token);
+             localStorage.setItem('user', JSON.stringify(userObject));
             //  console.log('After Token generation!');
              navigate('/home');
           } else {
@@ -111,22 +123,26 @@ const LoginForm = (props) => {
                         .then(response => response.json())
                         .then(data => {
                         // Assuming the backend sends email, firstName, and lastName in the response
-                        const { email, name, picture } = data;
+                        const { email, first_name, last_name, picture } = data;
 
                         // Store the email, firstName, and lastName in variables or state on the frontend
                         const storedEmail = email;
-                        const storedName = name;
+                        const storedFirstName = first_name;
+                        const storedLastName = last_name;
                         const storedPicture = picture;
-
+                                                
                         // Continue with other actions or UI updates
                         const validationObject = {
                             email: storedEmail,
-                            name: storedName,
+                            first_name: storedFirstName,
+                            last_name: storedLastName,
                             picture: storedPicture
                          }
                          console.log("GOOGLE VALIDATED DETAILS", validationObject)
                          const token = generateToken(validationObject)
                          localStorage.setItem('token', token);
+                         localStorage.setItem('user', JSON.stringify(validationObject));
+
                          navigate('/home');
                         })
                         .catch(error => {
