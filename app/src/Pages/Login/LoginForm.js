@@ -95,10 +95,46 @@ const LoginForm = (props) => {
                 </Button>
                 <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
                 <GoogleLogin 
-                    onSuccess={credentialResponse => {
+                    onSuccess={
+                        credentialResponse => {
                         console.log(credentialResponse );
-                        
-                        navigate('/home');}}
+                        fetch('http://localhost:8000/verifyGoogle', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            clientId: credentialResponse.clientId,
+                            credential: credentialResponse.credential
+                        }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                        // Assuming the backend sends email, firstName, and lastName in the response
+                        const { email, name, picture } = data;
+
+                        // Store the email, firstName, and lastName in variables or state on the frontend
+                        const storedEmail = email;
+                        const storedName = name;
+                        const storedPicture = picture;
+
+                        // Continue with other actions or UI updates
+                        const validationObject = {
+                            email: storedEmail,
+                            name: storedName,
+                            picture: storedPicture
+                         }
+                         console.log("GOOGLE VALIDATED DETAILS", validationObject)
+                         const token = generateToken(validationObject)
+                         localStorage.setItem('token', token);
+                         navigate('/home');
+                        })
+                        .catch(error => {
+                            console.log('API request failed', error);
+                            // Handle the error condition
+                          });                        
+                        }
+                    }
                     onError={() => {
                         console.log('Login Failed');
                     }}
