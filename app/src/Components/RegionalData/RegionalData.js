@@ -1,20 +1,63 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Heading from "../Common/Heading/Heading";
-import { Typography } from "@mui/material";
+import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
-const RegionalData = () => {
+const RegionalData = (props) => {
+
+    const {state, county} = props.locationObject;
+
+    const [regionalData, setRegionalData] = useState(null)
+
+    useEffect(() => {
+        fetch(`http://localhost:8000/regional-data?state_name=${state}&county_name=${county}`)
+        .then(response => response.json())
+        .then(data => {    
+            setRegionalData(data[0])
+        })
+        .catch(error => console.error(error));
+    },[state, county])    
+
     return (
         <React.Fragment>
             <Heading>Regional Data</Heading>
-            <Typography style={{padding: '10px'}}>
-            Population:		             3,186,989<br />
-            Area:			                      948 sq mi<br />
-            Pop. Density:	           3,989/sq mi<br />
-            Median rent (2B):	    $2,057<br />
-            Hospitals:		                20<br />
-            Public Schools:	        215<br />
-
-            </Typography>
+            {state && county ? <>
+            
+                {regionalData ? <>
+                    
+                    <TableContainer style={{marginTop: '10px'}}>
+                        <Table>
+                            <TableBody>                            
+                            {Object.entries(regionalData).map(([header, value]) => (
+                                <TableRow key={header}>
+                                {header === 'Income' ? (
+                                    <>
+                                        <TableCell><b>{header} (Avg)</b></TableCell>                                
+                                        <TableCell>${value}</TableCell>
+                                    </>
+                                ) : header === 'Population density' ? (
+                                    <>
+                                        <TableCell><b>{header}</b></TableCell>
+                                        <TableCell>{value} /sq.mi</TableCell>
+                                    </>
+                                ) : (
+                                    <>
+                                        <TableCell><b>{header}</b></TableCell>
+                                        <TableCell>{value}</TableCell>
+                                    </>
+                                )}
+                                </TableRow>
+                            ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                
+                    </> :
+                    <Typography style={{padding: '10px'}}>Sorry we could not get the regional data for this county.</Typography>
+                }
+                
+                </> :            
+                <Typography style={{padding: '10px'}}>Please select a state and county to view data.</Typography>
+            }                        
         </React.Fragment>
     )
 }

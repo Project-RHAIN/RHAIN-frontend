@@ -178,7 +178,7 @@ const Dashboard = (props) => {
             </Grid>
             <Grid item xs={4} className="grid-item">
                 <Paper className="paperContainer">
-                    <RegionalData />
+                    <RegionalData locationObject={locationObject} />
                 </Paper>
             </Grid>
             </Grid>
