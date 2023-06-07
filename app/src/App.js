@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile/Profile';
+import About from './Pages/About/About';
+import Data from './Pages/Data/Data';
 import { ThemeProvider } from '@mui/material';
 import ProtectedRoute from './Utils/ProtectedRoute';
 import theme from './Theme/customTheme';
@@ -16,6 +18,8 @@ function App() {
         <ThemeProvider theme={theme}>        
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/data" element={<Data />} />
 
           <Route path="/home" element={
             <ProtectedRoute>
