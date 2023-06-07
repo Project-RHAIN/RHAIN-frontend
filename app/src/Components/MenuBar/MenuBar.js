@@ -44,6 +44,10 @@ const MenuBar = (props) => {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       navigate('/');
+    } else if (setting === 'Dashboard') {
+      navigate('/home');
+    } else if (setting === 'Profile') {
+      navigate('/profile');
     }
   };
   // console.log("IMAGE", user.picture)
@@ -57,7 +61,7 @@ const MenuBar = (props) => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/home"
             sx={{
             //   mr: 2,
             //   display: { xs: 'none', md: 'flex' },
