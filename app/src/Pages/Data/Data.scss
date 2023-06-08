@@ -14,8 +14,15 @@
         min-width: 500px;
         max-width: 900px;
         padding-bottom: 40px;
-        padding-top: 40px;
+        // padding-top: 40px;
         background-color: rgba(0,0,0,0.7);
+
+        .navigationButtons {
+            background-color: transparent;
+            margin-top: 10px;
+            margin-left: 25px;
+            padding: 0;
+        }
 
         .fullform {
             color: white;
@@ -26,6 +33,7 @@
             font-weight: normal;
             color: white;
             margin-bottom: 5px;
+            margin-top: 5px;
         }
 
         h2 {

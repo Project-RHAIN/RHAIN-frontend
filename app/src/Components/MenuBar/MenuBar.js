@@ -33,8 +33,14 @@ const MenuBar = (props) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (page) => {
+    console.log(page)
     setAnchorElNav(null);
+    if(page === 'Data') {
+      navigate('/data');
+    } else if (page === 'About') {
+      navigate('/about');
+    }
   };
 
   const handleCloseUserMenu = (setting) => {
@@ -105,7 +111,7 @@ const MenuBar = (props) => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={() => {handleCloseNavMenu(page)}}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -115,7 +121,7 @@ const MenuBar = (props) => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => {handleCloseNavMenu(page)}}
                 sx={{ my: 2, color: 'white', display: 'block', textDecoration: 'none' }}                
               >
                 {page}

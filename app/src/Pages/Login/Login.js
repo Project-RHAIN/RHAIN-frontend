@@ -4,6 +4,8 @@ import logo from '../../Images/logo_white.png'
 import { Grid, Button, Alert } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate, useLocation } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
@@ -82,6 +84,14 @@ const Login = () => {
                 we analyze the raw data to produce valuable metrics that define the healthcare standards in a region. 
                 <br />Our user-friendly dashboard provides easy access to these insights, helping policymakers and healthcare professionals recognize the necessary actions to improve the system. 
                 Join us on our mission to make healthcare accessible and affordable for everyone.</p>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                  <Button variant='outlined' size='medium' style={{marginRight: '20px', color: 'white'}} startIcon={<InfoIcon />} onClick={() => {navigate('/about')}}>
+                    About Us
+                  </Button>
+                  <Button variant='outlined' size='medium' style={{color: 'white'}} startIcon={<BarChartIcon />} onClick={() => {navigate('/data')}}>
+                    Data
+                  </Button>                  
+                </div>
                 </div>          
             </Grid>
 

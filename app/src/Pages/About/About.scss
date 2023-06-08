@@ -1,9 +1,9 @@
 
 .OuterWrapperAbout {
 
-    height: 100vh;
+    // height: 100vh;
     background-image: url('../../Images/America-min.jpg');
-    background-size: cover;
+    background-size: cover ;
     color: white;
 
     .aboutWrapper {
@@ -14,7 +14,7 @@
         min-width: 500px;
         max-width: 900px;
         padding-bottom: 40px;
-        padding-top: 40px;
+        // padding-top: 40px;
         background-color: rgba(0,0,0,0.7);
 
         .fullform {
@@ -26,6 +26,7 @@
             font-weight: normal;
             color: white;
             margin-bottom: 5px;
+            margin-top: 5px;
         }
 
         h2 {
@@ -41,11 +42,47 @@
             padding-right: 30px;
         }
 
+        .navigationButtons {
+            background-color: transparent;
+            margin-top: 10px;
+            margin-left: 25px;
+            padding: 0;
+        }
+
         .gridItem {
             padding: 8px;
             .personCard {
                 padding: 5px;
-                background-color: #323232;
+                background-color:transparent;
+
+                .headShot {
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 10px;
+                }
+
+                .name {
+                    color: white;
+                    margin-bottom: 2px;
+                    margin-top: 5px;
+                    font-size: 18px;
+                }
+
+                .designation {
+                    margin-top: 0;
+                    color: white;
+                    margin-bottom: 0;
+                }
+
+                .linkIcons {
+                    color: white;
+                    margin: 5px;
+                    font-size: 25px;
+                }
+
+                .linkIcons:hover {
+                    cursor: pointer;
+                }
             }
         }
     }
