@@ -1,9 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './Login.scss'
 import logo from '../../Images/logo_white.png'
 import { Grid, Button, Alert } from "@mui/material";
-import TextField from '@mui/material/TextField';
-import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -27,7 +25,7 @@ function TabPanel(props) {
       >
         {value === index && (
           <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
+            {children}
           </Box>
         )}
       </div>
@@ -44,7 +42,7 @@ const Login = () => {
 
     const location = useLocation();
     const message = location.state?.message;
-    console.log("MESSAGE", message)
+    // console.log("MESSAGE", message)
 
     const [value, setValue] = React.useState(0);
 

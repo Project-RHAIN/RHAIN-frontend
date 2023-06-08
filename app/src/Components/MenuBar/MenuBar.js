@@ -34,7 +34,7 @@ const MenuBar = (props) => {
   };
 
   const handleCloseNavMenu = (page) => {
-    console.log(page)
+    // console.log(page)
     setAnchorElNav(null);
     if(page === 'Data') {
       navigate('/data');

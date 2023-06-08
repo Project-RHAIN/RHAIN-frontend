@@ -20,14 +20,14 @@ const Income = (props) => {
                     }
                 )
             })
-            console.log(gdata)
-            console.log("Use Effect called")            
+            // console.log(gdata)
+            // console.log("Use Effect called")            
             setData(gdata)
         })
         .catch(error => console.error(error));
     },[county])
-    console.log("County is ", county)
-    console.log("GRAPH DATA", graphData)
+    // console.log("County is ", county)
+    // console.log("GRAPH DATA", graphData)
       return (        
         <div style={{height: '100%', width: '100%'}} key={JSON.stringify(graphData)}>  {/* IMPORTANT Now gives the updated value but looks a little buggy*/}
             {graphData.length > 0 ? (

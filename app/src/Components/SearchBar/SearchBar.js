@@ -40,6 +40,8 @@ const Searchbar = (props) => {
         select
         fullWidth
         label="State"
+        SelectProps={{          
+        }}
         value={state}
         onChange={handleStateChange}
       >
@@ -57,6 +59,8 @@ const Searchbar = (props) => {
         label="County"
         value={county}
         onChange={handleCountyChange}
+        SelectProps={{          
+        }}
         disabled={!state}
         helperText={state ? "" : "Please select a state first"}
       >

@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 function TabPanel(props) {
@@ -42,7 +41,6 @@ const a11yProps = (index) => {
 }
 
 const BasicTabs = (props) => {
-  const [value, setValue] = React.useState(0);
   const {tabData, tabHeading, tabValue, setTabValue} = props
 
   const handleChange = (event, newValue) => {

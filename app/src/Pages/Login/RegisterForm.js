@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './Login.scss'
-import { API_KEY, BASE_ID, TABLE_NAME } from './config';
+// import { API_KEY, BASE_ID, TABLE_NAME } from './config';
 //import logo from '../../Images/logo_white.png'
 import { Button } from "@mui/material";
 import TextField from '@mui/material/TextField';
@@ -65,15 +65,15 @@ const RegisterForm = (props) => {
         };
 
 
-        const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
+        const url = `https://api.airtable.com/v0/${process.env.REACT_APP_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
         const headers = {
-            'Authorization': `Bearer ${API_KEY}`,
+            'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`,
             'Content-Type': 'application/json',
         };
 
 
         try {
-          const requestURL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}?filterByFormula={email}='${email}'` 
+          const requestURL = `https://api.airtable.com/v0/${process.env.REACT_APP_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?filterByFormula={email}='${email}'` 
           const response = await fetch(requestURL, {
             method: 'GET',
             headers: headers,
@@ -103,7 +103,7 @@ const RegisterForm = (props) => {
                  const token = generateToken(validationObject)
                  localStorage.setItem('token', token);
                  localStorage.setItem('user', JSON.stringify(userObject));
-                console.log('Registration successful!');
+                // console.log('Registration successful!');
                 navigate('/home');
               } else {
                 // Registration failed
@@ -160,29 +160,15 @@ const RegisterForm = (props) => {
                 required
                 fullWidth
             />   
-            {/* <Button onClick={handleRegister} variant='contained'>Register</Button>
-            <Button onClick={handleRegister} variant='contained'>Register</Button><br/>
-            {errorMessage && <p>{errorMessage}</p>}
-            <Button variant="contained" disableElevation className='login-button' onClick={routeChange} >
-            <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
-            <GoogleLogin onSuccess={credentialResponse => {
-                console.log(credentialResponse );
-                navigate('/home');}}
-            onError={() => {
-                console.log('Registration Failed');
-            }}
-            />
-            </GoogleOAuthProvider>
-            </Button> */}
             <div className="login-options">
                 <Button variant="contained" disableElevation className='login-button' onClick={handleRegister} >
                     Register
                 </Button>
-                <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
+                <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENTID}>
                 <GoogleLogin 
                     onSuccess={
                         credentialResponse => {
-                        console.log(credentialResponse );
+                        // console.log(credentialResponse );
                         fetch('http://localhost:8000/verifyGoogle', {
                         method: 'POST',
                         headers: {
@@ -211,7 +197,7 @@ const RegisterForm = (props) => {
                             last_name: storedLastName,
                             picture: storedPicture
                          }
-                         console.log("GOOGLE VALIDATED DETAILS", validationObject)
+                        //  console.log("GOOGLE VALIDATED DETAILS", validationObject)
                          const token = generateToken(validationObject)
                          localStorage.setItem('token', token);
                          localStorage.setItem('user', JSON.stringify(validationObject));

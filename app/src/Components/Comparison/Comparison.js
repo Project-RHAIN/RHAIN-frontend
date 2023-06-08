@@ -4,7 +4,6 @@ import Heading from "../Common/Heading/Heading";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Slider from "@mui/material/Slider";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { Modal, Typography, Tooltip } from "@mui/material";
 import "./Comparison.scss";
@@ -13,19 +12,19 @@ import MenuItem from "@mui/material/MenuItem";
 
 import stateData from "../../Data/US_States_and_Cities.json";
 
-const styles = {
-  modalContent: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: "20px",
-    width: "800px", // Adjust the width as needed
-  },
-  scoreBox: {
-    width: "45%", // Adjust the width as needed
-    padding: "20px",
-  },
-};
+// const styles = {
+//   modalContent: {
+//     display: "flex",
+//     flexDirection: "row",
+//     justifyContent: "space-between",
+//     padding: "20px",
+//     width: "800px", // Adjust the width as needed
+//   },
+//   scoreBox: {
+//     width: "45%", // Adjust the width as needed
+//     padding: "20px",
+//   },
+// };
 
 const marks = [
   {
@@ -136,8 +135,8 @@ const Comparison = (props) => {
   };
 
   const { type } = props;
-  const [sliderValueObjective1, setSliderValueObjective1] = useState(0);
-  const [sliderValueObjective2, setSliderValueObjective2] = useState(0);
+  // const [sliderValueObjective1, setSliderValueObjective1] = useState(0);
+  // const [sliderValueObjective2, setSliderValueObjective2] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
 
   const [featureData1, setFeatureData1] = useState([]);

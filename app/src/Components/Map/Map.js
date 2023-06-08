@@ -69,7 +69,7 @@ const Map = (props) => {
     // console.log(countyVals)
 
     const customBlues = [...Array(10)].map((d, i) => interpolateBlues(0.2 + i / 12));
-    console.log("COUNTYVALS",countyVals)
+    // console.log("COUNTYVALS",countyVals)
     const colorScale = scaleQuantile()
     .domain(countyVals.map(d => d.values))
     .range(customBlues);    

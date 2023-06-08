@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
 import './Login.scss'
-import { API_KEY, BASE_ID, TABLE_NAME } from './config';
+// import { API_KEY, BASE_ID, TABLE_NAME } from './config';
 import { generateToken} from "../../Utils/handleToken";
 import md5 from 'md5';
 
 const LoginForm = (props) => {
 
-    const {navigate, routeChange} = props;    
+    const {navigate, routeChange} = props;        
+
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -32,9 +33,10 @@ const LoginForm = (props) => {
             return;
         }
 
-        const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
+        const url = `https://api.airtable.com/v0/${process.env.REACT_APP_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+        // console.log(url)
         const headers = {
-            'Authorization': `Bearer ${API_KEY}`,
+            'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`,
             'Content-Type': 'application/json',
         };
 
@@ -48,13 +50,13 @@ const LoginForm = (props) => {
           });
           const data = await response.json();          
           if (data.records.length > 0) {
-             console.log('Login successful!');
+            //  console.log('Login successful!');
              const validationObject = {
                 email: email,
                 password: hashedPassword
              }
 
-             console.log("LOGIN DATA", data.records[0].fields)
+            //  console.log("LOGIN DATA", data.records[0].fields)
 
              const udata = data.records[0].fields
 
@@ -105,11 +107,11 @@ const LoginForm = (props) => {
                 <Button variant="contained" disableElevation className='login-button' onClick={handleLogin} >
                     Login
                 </Button>
-                <GoogleOAuthProvider clientId="888396688109-n3ms9snv8n9jbpn7bam27kvt4mce87gp.apps.googleusercontent.com">
+                <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENTID}>
                 <GoogleLogin 
                     onSuccess={
                         credentialResponse => {
-                        console.log(credentialResponse );
+                        // console.log(credentialResponse );
                         fetch('http://localhost:8000/verifyGoogle', {
                         method: 'POST',
                         headers: {
@@ -138,7 +140,7 @@ const LoginForm = (props) => {
                             last_name: storedLastName,
                             picture: storedPicture
                          }
-                         console.log("GOOGLE VALIDATED DETAILS", validationObject)
+                        //  console.log("GOOGLE VALIDATED DETAILS", validationObject)
                          const token = generateToken(validationObject)
                          localStorage.setItem('token', token);
                          localStorage.setItem('user', JSON.stringify(validationObject));
