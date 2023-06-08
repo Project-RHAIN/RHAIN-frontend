@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import BasicBarGraph from "./Common/BasicBarGraph";
-import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
+import { VictoryBar } from 'victory';
 
 const Income = (props) => {        
     

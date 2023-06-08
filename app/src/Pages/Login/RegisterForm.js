@@ -13,7 +13,7 @@ import md5 from 'md5';
 
 const RegisterForm = (props) => {
 
-    const {navigate, routeChange} = props;
+    const {navigate} = props;
 
     const [firstname, setFirstName] = useState('');
     const [lastname, setLastName] = useState('');

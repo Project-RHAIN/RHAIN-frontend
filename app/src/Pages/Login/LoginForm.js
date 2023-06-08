@@ -8,7 +8,7 @@ import md5 from 'md5';
 
 const LoginForm = (props) => {
 
-    const {navigate, routeChange} = props;        
+    const {navigate} = props;        
 
 
     const [email, setEmail] = useState('');

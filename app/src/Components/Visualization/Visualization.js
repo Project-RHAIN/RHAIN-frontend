@@ -1,8 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import Heading from "../Common/Heading/Heading";
 import BasicTabs from "../Common/BasicTabs/BasicTabs";
-import { Button } from "@mui/material";
-import Comparison from "../Comparison/Comparison";
 import './Visualization.scss'
 // import HospitalAdmissions from "../Graphs/HospitalAdmissions";
 // import Livability from "../Graphs/Livability";
@@ -11,8 +9,6 @@ import './Visualization.scss'
 const Visualization = (props) => {
 
     const {visualizations, curVis, visTabs, tabValue, setTabValue} = props.visData    
-    
-    const [modalOpen, setModalOpen] = useState(false);
 
     const visHeading = visualizations.find(v => v.value === curVis).label;
 

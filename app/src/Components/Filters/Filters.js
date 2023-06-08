@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Heading from "../Common/Heading/Heading";
-import {TextField, MenuItem} from '@mui/material';
+import {TextField} from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel'
 import { FormGroup,Checkbox } from "@mui/material";
 
@@ -26,9 +26,11 @@ const Filters = (props) => {
       setMapVis(event.target.value)
     }
 
+    const checkEffect = visTabs[curVis][tabValue].label
+
     useEffect(() => {      
       setMapVis('')
-    },[visTabs[curVis][tabValue].label])
+    },[checkEffect])
 
     return (
         <div>

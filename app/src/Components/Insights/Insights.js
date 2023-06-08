@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import Heading from "../Common/Heading/Heading";
-import { Typography } from "@mui/material";
 import NewsCard from "./NewsCard";
 
 const Insights = (props) => {

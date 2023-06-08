@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Heading from "../Common/Heading/Heading";
-import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import { Typography, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 
 const RegionalData = (props) => {
 

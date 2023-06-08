@@ -3,7 +3,6 @@ import Heading from "../Common/Heading/Heading";
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
-import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Modal, Typography, Tooltip } from "@mui/material";
 import './Score.scss'

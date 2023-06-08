@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Button, Grid, Paper } from "@mui/material";
+import {  Grid, Paper } from "@mui/material";
 import Visualization from "../../Components/Visualization/Visualization";
 import Insights from "../../Components/Insights/Insights";
 import RegionalData from "../../Components/RegionalData/RegionalData";
