@@ -3,6 +3,9 @@ import { Paper, Typography, Grid, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import logo from '../../Images/logo_white.png'
 import Utkarsh from "../../Images/Utkarsh.jpg"
+import Rithesh from '../../Images/Rithesh.jpeg'
+import Sangeeta from '../../Images/Sangeeta.jpg'
+import Shivani from '../../Images/Shivani.png'
 import HomeIcon from '@mui/icons-material/Home';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -48,29 +51,46 @@ const About = () => {
                 <Grid container>
                     <Grid item xs={3} className="gridItem">
                         <Paper className="personCard">
-                            R
+                        <img className="headShot" alt="teampic" src={Rithesh}/>
+                            <p className="name">Rithesh Shetty</p>
+                            <p className="designation">ML Developer</p>
+                            <div style={{display: 'flex', justifyContent: 'center'}}>
+                                <LinkedInIcon className="linkIcons" onClick={() => window.open('https://www.linkedin.com/in/ritheshetty/')}/>
+                                <GitHubIcon className="linkIcons" onClick={() => window.open('https://github.com/ritheshetty/')}/>                                
+                            </div>                            
                         </Paper>
                     </Grid>
                     <Grid item xs={3} className="gridItem">
                         <Paper className="personCard">
-                            S
+                            <img className="headShot" alt="teampic" src={Sangeeta}/>
+                                <p className="name">Sangeeta Rao</p>
+                                <p className="designation">Full-Stack Developer</p>
+                                <div style={{display: 'flex', justifyContent: 'center'}}>
+                                    <LinkedInIcon className="linkIcons" onClick={() => window.open('https://www.linkedin.com/in/sangeetasrao/')}/>
+                                    <GitHubIcon className="linkIcons" onClick={() => window.open('https://github.com/sangeetarao')}/>                                
+                                </div>                            
                         </Paper>
                     </Grid>
                     <Grid item xs={3} className="gridItem">
                         <Paper className="personCard">
-                            S
+                                <img className="headShot" alt="teampic" src={Shivani}/>
+                                    <p className="name">Shivani Shrivastava</p>
+                                    <p className="designation">ML Developer</p>
+                                    <div style={{display: 'flex', justifyContent: 'center'}}>
+                                        <LinkedInIcon className="linkIcons" onClick={() => window.open('https://www.linkedin.com/in/shivanishrivastava823/')}/>
+                                        <GitHubIcon className="linkIcons" onClick={() => window.open('https://github.com/ShivaniShrivastava')}/>                                
+                                    </div>                            
                         </Paper>
                     </Grid>
                     <Grid item xs={3} className="gridItem">
                         <Paper className="personCard">
                             <img className="headShot" alt="teampic" src={Utkarsh}/>
-                            <p className="name"> Utkarsh Chhapekar</p>
-                            <p className="designation"> Full-Stack Developer</p>
+                            <p className="name">Utkarsh Chhapekar</p>
+                            <p className="designation">Full-Stack Developer</p>
                             <div style={{display: 'flex', justifyContent: 'center'}}>
                                 <LinkedInIcon className="linkIcons" onClick={() => window.open('https://www.linkedin.com/in/utkarsh-c/')}/>
                                 <GitHubIcon className="linkIcons" onClick={() => window.open('https://github.com/Utkichaps')}/>
-                                <LinkIcon className="linkIcons" onClick={() => window.open('https://utkichaps.me')}/>
-                                
+                                <LinkIcon className="linkIcons" onClick={() => window.open('https://utkichaps.me')}/>                                
                             </div>                            
                         </Paper>
                     </Grid>
