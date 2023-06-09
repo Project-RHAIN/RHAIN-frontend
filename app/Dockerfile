@@ -10,15 +10,18 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install
-RUN npm install react-scripts -g
 
-# RUN npm install nodemon --save-dev
-
-# Copy the production build of the React application to the container
+# Copy the source code to the container
 COPY . .
 
-# Expose port 3000 to the outside world
+# Build the React application
+RUN npm run build
+
+# Install the serve package globally
+RUN npm install -g serve
+
+# Expose port 5000 for serving the React application
 EXPOSE 3000
 
 # Start the server
-CMD ["nodemon", "--exec", "npm", "start"]
+CMD ["serve", "-s", "build"]
