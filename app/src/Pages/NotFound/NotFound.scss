@@ -1,0 +1,52 @@
+
+.OuterWrapperData {
+
+    height: 100vh;
+    background-image: url('../../Images/America-min.jpg');
+    background-size: cover;
+    color: white;
+
+    .dataWrapper {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-top: 20px;
+        min-width: 500px;
+        max-width: 900px;
+        padding-bottom: 40px;
+        // padding-top: 40px;
+        background-color: rgba(0,0,0,0.7);
+
+        .navigationButtons {
+            background-color: transparent;
+            margin-top: 10px;
+            margin-left: 25px;
+            padding: 0;
+        }
+
+        .fullform {
+            color: white;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: normal;
+            color: white;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        h2 {
+            font-size: 30px;
+            font-weight: normal;
+            color: white;
+        }
+
+        .dataText {
+            color: white;
+            text-align: justify;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+}

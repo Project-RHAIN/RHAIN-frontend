@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Login from './Pages/Login/Login';
+import NotFound from './Pages/NotFound/NotFound';
 import Profile from './Pages/Profile/Profile';
 import About from './Pages/About/About';
 import Data from './Pages/Data/Data';
@@ -33,7 +34,7 @@ function App() {
             </ProtectedRoute>
           } />  
 
-          <Route path="*" element={<div>Oops no page found</div>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         </ThemeProvider>
       </Router>
