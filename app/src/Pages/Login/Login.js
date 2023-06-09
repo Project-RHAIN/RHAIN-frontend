@@ -72,15 +72,13 @@ const Login = () => {
                     }}
                 />; */}                                                
                 <h1>Regional Healthcare Analysis and Improvement Network </h1>
-                <p>Our goal is to leverage the power of big data methodologies to provide insights into the issues 
-                surrounding healthcare delivery on a region-by-region basis. 
-                We aim to identify the primary problems of quality, accessibility, and affordability, and assign a score for each aspect 
-                for each region. 
-                By aggregating multiple sources of data, such as doctor/hospital 
-                reviews, income data, and proximity to hospitals, 
-                we analyze the raw data to produce valuable metrics that define the healthcare standards in a region. 
-                <br />Our user-friendly dashboard provides easy access to these insights, helping policymakers and healthcare professionals recognize the necessary actions to improve the system. 
-                Join us on our mission to make healthcare accessible and affordable for everyone.</p>
+                <p>RHAIN is an intelligent healthcare analytics platform developed to improve healthcare policy decision-making and reduce wasteful expenditure. 
+                Leveraging the power of state-of-the-art machine learning and statistical techniques, our goal is to provide actionable insights into healthcare delivery issues on a county-by-county basis. 
+                By aggregating and analyzing multiple sources of objective and perception data, such as doctor/hospital 
+                reviews, socio-economic factors, and relevant county measures, 
+                RHAIN produces valuable metrics and visualizations that define healthcare standards and revolutionalize county health evaluation. 
+                <br />Our user-friendly dashboard provides easy access to these insights, helping policymakers recognize necessary actions to improve the system. 
+                Join us on our mission to make healthcare accessible and affordable for everyone!</p>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                   <Button variant='outlined' size='medium' style={{marginRight: '20px', color: 'white'}} startIcon={<InfoIcon />} onClick={() => {navigate('/about')}}>
                     About Us
