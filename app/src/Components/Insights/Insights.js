@@ -18,7 +18,7 @@ const Insights = (props) => {
         // console.log("Insights useEffect called")
         if(county) {
             // console.log("COUNTY CHOSEN")
-            fetch(`https://www.googleapis.com/customsearch/v1?key=AIzaSyDC8AZTEhI8TF16OOWBGWqEqwenk0lWeBU&cx=36c9a19163b6a4038&q=Healthcare%20${county}%20${state}&num=10&sort=date:r:2023-04-25`)
+            fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.REACT_APP_GOOGLE_NEWS}&cx=${process.env.REACT_APP_GOOGLE_NEWS_CX}&q=Healthcare%20${county}%20${state}&num=10&sort=date:r:2023-04-25`)
             .then(response => response.json())
             .then(data => {
                 // console.log(data.items)
