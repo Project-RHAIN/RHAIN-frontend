@@ -9,7 +9,7 @@ const RegionalData = (props) => {
     const [regionalData, setRegionalData] = useState(null)
 
     useEffect(() => {
-        fetch(`http://rhain-backend_web:8000/regional-data?state_name=${state}&county_name=${county}`)
+        fetch(`http://172.17.0.2:8000/regional-data?state_name=${state}&county_name=${county}`)
         .then(response => response.json())
         .then(data => {    
             setRegionalData(data[0])

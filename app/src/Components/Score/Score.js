@@ -103,7 +103,7 @@ const Score = (props) => {
 
   useEffect(() => {
     // console.log("In score useEffect")
-    fetch(`http://rhain-backend_web:8000/health-score?state_name=${state}&county_name=${county}`)
+    fetch(`http://172.17.0.2:8000/health-score?state_name=${state}&county_name=${county}`)
     .then(response => response.json())
     .then(data => {        
         // console.log((data["Health Score"]/10).toFixed(2))
@@ -111,7 +111,7 @@ const Score = (props) => {
     })
     .catch(error => console.error(error));
 
-    fetch(`http://rhain-backend_web:8000/perception-score?state_name=${state}&county_name=${county}`)
+    fetch(`http://172.17.0.2:8000/perception-score?state_name=${state}&county_name=${county}`)
     .then(response => response.json())
     .then(data => {        
         // console.log((data["Health Score"]/10).toFixed(2))
@@ -121,7 +121,7 @@ const Score = (props) => {
     })
     .catch(error => console.error(error));
 
-    fetch(`http://rhain-backend_web:8000/feature-score?state_name=${state}&county_name=${county}`)
+    fetch(`http://172.17.0.2:8000/feature-score?state_name=${state}&county_name=${county}`)
     .then(response => response.json())
     .then(data => {        
         // console.log((data["Health Score"]/10).toFixed(2))        

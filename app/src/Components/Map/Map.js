@@ -57,7 +57,7 @@ const Map = (props) => {
         if(heatMap && mapVis !== '') {
             // console.log("I AM IN MAPPPPPP")
             // console.log("INMAP", state, mapVis, heatMap)
-            fetch(`http://rhain-backend_web:8000/map-vis?state_name=${state}&map_vis=${mapVis}`)
+            fetch(`http://172.17.0.2:8000/map-vis?state_name=${state}&map_vis=${mapVis}`)
             .then(response => response.json())
             .then(data => {
                 // console.log(data);

@@ -169,7 +169,7 @@ const RegisterForm = (props) => {
                     onSuccess={
                         credentialResponse => {
                         // console.log(credentialResponse );
-                        fetch('http://rhain-backend_web:8000/verifyGoogle', {
+                        fetch('http://172.17.0.2:8000/verifyGoogle', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

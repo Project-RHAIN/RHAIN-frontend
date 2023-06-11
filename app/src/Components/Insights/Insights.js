@@ -9,7 +9,7 @@ const Insights = (props) => {
     const [articles, setArticles] = useState([])
 
     // useEffect(() => {
-    //     fetch(`http://rhain-backend_web:8000/crime?state_name=${state}&county_name=${county}&trend=${trend}`)
+    //     fetch(`http://172.17.0.2:8000/crime?state_name=${state}&county_name=${county}&trend=${trend}`)
     //     .then(response => response.json())
     //     .then(data => {}})
 

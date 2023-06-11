@@ -9,7 +9,7 @@ const Income = (props) => {
     const {state, county, trend} = props.location;
 
     useEffect(() => {
-        fetch(`http://rhain-backend_web:8000/income?state_name=${state}&county_name=${county}&trend=${trend}`)
+        fetch(`http://172.17.0.2:8000/income?state_name=${state}&county_name=${county}&trend=${trend}`)
         .then(response => response.json())
         .then(data => {        
             var gdata = []
