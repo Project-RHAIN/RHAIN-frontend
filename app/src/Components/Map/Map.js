@@ -57,7 +57,7 @@ const Map = (props) => {
         if(heatMap && mapVis !== '') {
             // console.log("I AM IN MAPPPPPP")
             // console.log("INMAP", state, mapVis, heatMap)
-            fetch(`http://172.17.0.2:8000/map-vis?state_name=${state}&map_vis=${mapVis}`)
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/api/map-vis?state_name=${state}&map_vis=${mapVis}`)
             .then(response => response.json())
             .then(data => {
                 // console.log(data);

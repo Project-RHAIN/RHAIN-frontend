@@ -148,7 +148,7 @@ const Comparison = (props) => {
   useEffect(() => {
     // console.log("In useEffect1")
     fetch(
-      `http://172.17.0.2:8000/compare-score?state_name=${state1}&county_name=${county1}`
+      `${process.env.REACT_APP_BACKEND_URL}/api/compare-score?state_name=${state1}&county_name=${county1}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -160,7 +160,7 @@ const Comparison = (props) => {
   useEffect(() => {
     // console.log("In useEffect2")
     fetch(
-      `http://172.17.0.2:8000/compare-score?state_name=${state2}&county_name=${county2}`
+      `${process.env.REACT_APP_BACKEND_URL}/api/compare-score?state_name=${state2}&county_name=${county2}`
     )
       .then((response) => response.json())
       .then((data) => {

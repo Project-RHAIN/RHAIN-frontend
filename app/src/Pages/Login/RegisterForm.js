@@ -169,7 +169,7 @@ const RegisterForm = (props) => {
                     onSuccess={
                         credentialResponse => {
                         // console.log(credentialResponse );
-                        fetch('http://172.17.0.2:8000/verifyGoogle', {
+                        fetch(`${process.env.REACT_APP_BACKEND_URL}/api/verifyGoogle`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

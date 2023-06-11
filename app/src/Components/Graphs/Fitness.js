@@ -11,7 +11,7 @@ const Fitness = (props) => {
     const {state, county, trend} = props.location;    
 
     useEffect(() => {
-        fetch(`http://172.17.0.2:8000/health-behavior?state_name=${state}&county_name=${county}&trend=${trend}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/api/health-behavior?state_name=${state}&county_name=${county}&trend=${trend}`)
         .then(response => response.json())
         .then(data => {
             if (trend) {
