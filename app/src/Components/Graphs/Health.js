@@ -11,7 +11,7 @@ const Health = (props) => {
     const {state, county, trend} = props.location;
 
     useEffect(() => {
-        fetch(`http://localhost:8000/health?state_name=${state}&county_name=${county}&trend=${trend}`)
+        fetch(`http://rhain-backend_web:8000/health?state_name=${state}&county_name=${county}&trend=${trend}`)
         .then(response => response.json())
         .then(data => {     
             if (trend) {                

@@ -112,7 +112,7 @@ const LoginForm = (props) => {
                     onSuccess={
                         credentialResponse => {
                         // console.log(credentialResponse );
-                        fetch('http://localhost:8000/verifyGoogle', {
+                        fetch('http://rhain-backend_web:8000/verifyGoogle', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
